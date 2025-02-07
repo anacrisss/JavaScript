@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+    <link rel="stylesheet" href="css/stylos.css">
+
+    <style>
+        h1,
+        h2,
+        h3 {
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            margin: 0 auto;
+            width: 70%;
+            border: 1px solid rgba(128, 128, 128, 0.149);
+            box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 10px 0px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            font-weight: bold;
+            color: black;
+            transition: 0.5s;
+        }
+
+        nav a:hover {
+            color: red;
+        }
+
+        .main {
+            border: 1px solid black;
+            padding: 20px;
+            background-color: rgba(255, 228, 196, 0.5);
+            width: 800px;
+            margin: 20px auto;
+            box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+            margin-bottom: 20px;
+        }
+
+        select {
+            font-size: 1.2em;
+            padding: 10px;
+            margin: 5px;
+        }
+
+        label {
+            font-size: 1.2rem;
+        }
+
+        a {
+            padding: 5px;
+
+        }
+
+        .select {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 10px;
+            width: fit-content;
+            border-radius: 5px;
+        }
+
+        button {
+            font-size: 1.2em;
+            padding: 5px;
+            margin: 5px;
+            background-color: cadetblue;
+            transition: 0.8s;
+        }
+
+        button:hover {
+            background-color: rgba(95, 158, 160, 0.8);
+            cursor: pointer;
+        }
+
+        img,
+        .select,
+        button,
+        .inputArea,
+        .foroArea {
+            border-color: rgba(128, 128, 128, 0.5);
+            box-shadow: 2px 2px 5px gray;
+            border-radius: 5px;
+        }
+
+        img {
+            display: block;
+            margin: 10px auto;
+            transition: 1s;
+        }
+
+        img:hover {
+            scale: 1.2;
+        }
+
+        hr {
+            margin: 20px;
+            width: 50%;
+        }
+
+        #cuadrado {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            margin: 20px;
+            transition: 1s;
+        }
+
+        .form {
+            width: fit-content;
+            min-width: 400px;
+            border: 1px solid black;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 5px 5px 5px gray;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .reset {
+            align-items: flex-end
+        }
+
+        textarea {
+            margin: 10px 0 10px 0;
+            width: 400px;
+            height: 100px;
+            resize: none;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .chat {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+
+        }
+
+        .inputArea {
+            padding: 20px;
+            width: fit-content;
+            background: rgba(255, 248, 220, 0.5);
+        }
+
+        .foroArea {
+            width: 80%;
+            padding: 10px;
+            background: rgba(255, 248, 220, 0.5);
+        }
+
+        .foroArea H2 {
+            text-align: center;
+            margin-bottom: 3px;
+            text-decoration: underline;
+        }
+
+        /* Estilo general de la tabla */
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin: 0 auto;
+        }
+
+        /* Estilo para las celdas */
+        th,
+        td {
+            border: 1px solid #dddddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        /* Estilo para la cabecera */
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Filas alternas */
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Estilo para los puntos en la última columna */
+        td:last-child {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .lineaGruesa {
+            border-top: 3px solid black;
+        }
+    </style>
+
+
+
+
+</head>
+
+<body>
+    <h1>Ejercicio 1 (1pto)</h1>
+    <nav>
+        <a href="ejercicio1_exp.html">Ir a explicación</a><br><br>
+        <a href="ejercicio2.html">Ir a Ejercicio 2</a><br><br>
+        <a href="ejercicio3.html">Ir a Ejercicio 3</a><br><br>
+    </nav>
+
+    <div class="select">
+        <label>Selecciona un país: </label>
+        <select>
+            <option selected class="a">México</option>
+            <option id="e" value="e">Alemania</option>
+            <option id="a" value="a">Argentina</option>
+            <option id="e" value="e">Francia</option>
+            <option id="a" value="a">Brasil</option>
+            <option id="e" value="e">Italia</option>
+            <option id="a" value="a">Estados Unidos</option>
+            <option id="e" value="e">España</option>
+            <option id="a" value="a">Canadá</option>
+            <option id="e" value="e">Portugal</option>
+        </select>
+    </div>
+    <button onclick="soyDe()">¿De dónde soy?</button>
+
+    <script>
+        //Función que captura un valor del select e imprime un alert
+        //basándose en la decisión de un operador ternario
+        //Pista: A los países europeos aplicales un valor y a los americanos otro
+
+        let lugarA = document.getElementById("e").value;
+        let lugarE = document.getElementById("e").value;
+
+
+        function soyDe() {
+
+            if (lugarA) {
+                alert("Soy Americano")
+            }
+
+            else
+                alert(lugarE + "Soy Europeo")
+        }
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

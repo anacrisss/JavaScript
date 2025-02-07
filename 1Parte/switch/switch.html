@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<button onclick="dimeNumero()">Ejecuta funcion</button>
+
+<body>    
+
+    <script>
+        function dimeNumero() {
+            let numero1 = prompt("Dime un número del 1 la 10")
+            let numero2 = Number(numero1)
+
+            //switch
+            switch (numero2) {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    document.write("Has suspendido<br>")
+                    break
+                    case 5:
+                    document.write("Aprobado<br>")
+                    break
+                    case 6:
+                    document.write("Bien<br>")
+                    break
+                    case 7:
+                    document.write("Notable<br>")
+                    break
+                        case 8:
+                        document.write("Has suspendido<br>")
+                        break
+                    case 9:
+                    document.write("Sobresaliente<br>")
+                    break
+                        case 10:
+                        document.write("Sobrealiente<br>")
+                        break
+                default:
+                    document.write("No se que has escrito")
+                    break
+
+
+            }
+
+
+
+
+
+
+        }
+    </script>
+
+</body>
+
+</html>

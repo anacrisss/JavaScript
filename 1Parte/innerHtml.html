@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Practica de InnerHtml</title>
+    <script>
+        let nombreUsuario
+        let ciudadUsuario
+        function mostrar() {
+            nombreUsuario = document.getElementById("nombre").value
+            ciudadUsuario = document.getElementById("lugar").value
+            if (!nombreUsuario || !ciudadUsuario) {
+                alert("Por favor, ingrese ambos campos")
+            }
+            else {
+                // document.getElementById("resultado").innerHTML += "<p> Te llamas " + nombreUsuario + " y naciste en " + ciudadUsuario + "</p><br>" 
+                document.getElementById("resultado").innerHTML += `Te llamas ${nombreUsuario} y naciste en ${nombreCiudad} <br>`
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>Practica de InnerHtml</h1>
+    Introduce tu nombre:
+    <input type="text" id="nombre" placeholder="Dime tu nombre...">
+    Dime donde naciste:
+    <input type="text" id="lugar" placeholder="Dime lugar...">
+    Dime tu edad:
+    <input type="number" id="edad" min="1" max="60">
+
+    <hr>
+    <button onclick="mostrar()">Dimelo!!</button>
+
+    <div id="resultado">
+        <h3>Nombre y cuidad de nacimiento</h3>
+    </div>
+
+</body>
+
+</html>

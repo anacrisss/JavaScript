@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+
+</head>
+
+<body>
+
+    <h1>Practicas con prompt</h1>
+    <p>Pulsa en multiplica, elige 2 números y obtendras su multiplicación</p>
+    <button onclick="Multiplicar()">Multiplicar</button>
+    <!-- <h2>Resultado</h2>  -->
+    <!-- <div id= "resultado"></div> -->
+
+
+    <script>
+        function Multiplicar() {
+            let num1 = parseInt(prompt("Introduce el primer número"));
+            let num2 = parseInt("Introduce el primer número");
+            let resultado = num1 * num2;
+
+            // if (isNaN(num1)){
+            //     alert("Algún dato no es un número");
+            // }
+            // else{
+            //     num1=parseInt(prompt("Dame número 1:"))
+            // }
+
+
+            if (isNaN(numeroUno) || isNaN(numeroDos)) {
+                alert("Los datos introducidos son incorrectos");
+            } else {
+                alert("La multiplicacion de los numeros es: " + numeroUno * numeroDos);
+            }
+            // document.write("El resultado es: "  + resultado);
+        }
+    </script>
+
+
+</body>
+
+</html>

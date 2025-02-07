@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de empleados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 80%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin: 10px 1% 0 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:last-child {
+            background-color: #008CBA;
+            margin-right: 0;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .formulario {
+            max-width: 600px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        .listado {
+            background-color: rgba(128, 112, 253, 0.118);
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(128, 128, 128, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="formulario">
+            <h1>Formulario de empleados</h1>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" placeholder="Introduce el nombre"><br>
+            <label for="cargo">Cargo:</label>
+            <input type="text" id="cargo" placeholder="Introduce el cargo"><br>
+            <button id="cargarEmpleado">Carga Empleado</button>
+            <button id="mostrarEmpleados">Muestra Empleados</button>
+            <button id="trabajar">Poner a trabajar</button>
+        </div>
+        <div class="listado">
+            <h1>Listado</h1>
+            <ul id="listaDeEmpleados"></ul>
+            <ul id="genteTrabajando"></ul>
+        </div>
+
+    </div>
+
+    <script>
+        // Creo array empleados
+        let empleados = []
+
+        // Creo objeto empleados
+        class Empleados {
+            constructor(nombre, cargo) {
+                this.nombre = nombre
+                this.cargo = cargo
+            }
+
+            trabajar() {
+                return `El empleado ${this.nombre} está trabajando en su puesto ${this.cargo}`
+            }
+        }
+
+
+        // Funcion para cargar empleados
+        function cargaEmpleado() {
+            let nombre = document.getElementById("nombre").value.trim() // quitar campos en blanco por delante y detras
+            let cargo = document.getElementById("cargo").value.trim()
+            if (nombre && cargo) {
+                let nuevoEmpleado = new Empleados(nombre, cargo)
+                empleados.push(nuevoEmpleado) //añade en el array empleado 
+            }
+            else {
+                alert("Faltan datos")
+            }
+
+        }
+
+
+        // Funcion para limpiar los inputs
+        function limpiarCampos() {
+            document.getElementById("nombre").value = "";
+            document.getElementById("cargo").value = " ";
+            document.getElementById("cargo").focus; // . focus, pone el cursor en el campo cargo
+        }
+
+        //Función para mostrar empleados
+        function muestraEmpleados() {
+            document.getElementById("listaDeEmpleados").innerHTML = " "
+            if (empleados.length != 0) {
+                for (let e of empleados) {
+                    document.getElementById("listaDeEmpleados").innerHTML += "<li>" + e.nombre + " " + e.cargo + "</li>"
+                }
+            }
+            else {
+                alert("No hay empleados")
+            }
+            limpiarCampos()
+        }
+
+
+        //Funcion para poner a trabajar
+        function ponerATrabajar(){
+            for (let e of empleados){
+                document.getElementById("genteTrabajando").innerHTML = "<li>" + e.trabajar() + "</li>"
+            }
+        }
+
+
+        // Añadir EventListeners
+        document.getElementById("cargarEmpleado").addEventListener("click", cargaEmpleado);
+        document.getElementById("mostrarEmpleados").addEventListener("click", muestraEmpleados);
+        document.getElementById("trabajar").addEventListener("click", ponerATrabajar);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasarela de Pago</title>
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            margin: 10px;
+        }
+
+        body {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        .form-container {
+            border: 1px solid gray;
+            width: 600px;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            gap: 5px;
+            margin: 10px;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid gainsboro;
+        }
+
+        input[type="button"] {
+            width: 100px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .form-card {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .form-card input {
+            padding: 8px;
+        }
+
+        .card-number {
+            flex: 4;
+        }
+
+        .mesCaducidad,
+        .anyoCaducidad {
+            flex: 1;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        #resultado {
+            font-size: 20px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Pasarela de pago</h1>
+
+    <!-- Contenedor del formulario -->
+    <div class="form-container">
+        <!-- Campo para el nombre completo -->
+        <label for="nombre">Introduce tu nombre completo:</label>
+        <input type="text" id="nombre" placeholder="Indica tu nombre..." onkeydown="return evitaNumeros(event)">
+
+        <!-- Campos para los datos de la tarjeta -->
+        <label for="numeroTarjeta">Indica la numeración de tu tarjeta:</label>
+        <div class="form-card">
+            <input type="number" id="numeroTarjeta" class="card-number" placeholder="Número de tarjeta (sin guiones) ..." maxlength="16">
+            <input type="number" id="mesCaducidad" class="mesCaducidad" placeholder="Mes" maxlength="2">
+            <input type="number" id="anyoCaducidad" class="anyoCaducidad" placeholder="Año" maxlength="4">
+        </div>
+
+        <!-- Botón para realizar la compra -->
+        <input type="button" value="Comprar" onclick="chequeaCompra()">
+    </div>
+
+    <!-- Donde se mostrarán los resultados -->
+    <div id="resultado"></div>
+
+    <script>
+
+        // Variables globales
+        let nombre, tarjeta, mesCaducidad, anyoCaducidad, nombreOK, tarjetaOK, texto;
+
+        // Función que se ejecuta al hacer clic en "Comprar"
+        function chequeaCompra() {
+            texto = ""; // Resetea los mensajes
+            nombre = document.getElementById("nombre").value;
+            tarjeta = document.getElementById("numeroTarjeta").value;
+            mesCaducidad = parseInt(document.getElementById("mesCaducidad").value);
+            anyoCaducidad = parseInt(document.getElementById("anyoCaducidad").value);
+
+            // Verifica si el nombre y la tarjeta son válidos
+            nombreOK = chequeaNombre(nombre);
+            tarjetaOK = chequeaTarjeta(tarjeta, mesCaducidad, anyoCaducidad);
+
+            if (nombreOK && tarjetaOK) {
+                texto += "Enhorabuena <b>" + nombre + "</b>. Compra realizada con éxito<br>";
+            } else {
+                texto += "Lo sentimos <b>" + nombre + "</b>. La compra no ha podido ser realizada<br>";
+            }
+
+            // Muestra el resultado
+            document.getElementById("resultado").innerHTML = texto;
+        }
+
+        // Función para validar el nombre
+        function chequeaNombre(nombre) {
+            if (!nombre || nombre.length < 5) {
+                texto += "Debe indicar un nombre de usuario válido<br>";
+                return false;
+            } else {
+                texto += "Nombre de usuario válido<br>";
+                return true;
+            }
+        }
+
+        // Función para validar la tarjeta y fecha de caducidad
+        function chequeaTarjeta(tarjeta, mes, anyo) {
+            //Verifica si tarjeta es numero y tiene 16m si mes y año es número
+            if (!isNaN(tarjeta) && tarjeta.length === 16 && !isNaN(mes) && !isNaN(anyo)) {
+                // Verifica si la tarjeta no está caducada
+                if (anyo > 2024 || (anyo === 2024 && mes >= 10)) {
+                    texto += "Tarjeta validada<br>";
+                    return true;
+                } else {
+                    texto += "Tarjeta caducada<br>";
+                    return false;
+                }
+            } else {
+                texto += "Tarjeta no válida<br>";
+                return false;
+            }
+        }
+
+        // Función que evita que se escriban números en el campo de nombre
+        function evitaNumeros(e) {
+            let key = e.keyCode || e.which;
+            // Permite solo letras: mayúsculas (65-90), minúsculas (97-122) y retroceso
+            if ((key >= 65 && key <= 90) || (key >= 97 && key <= 122) || key == 8) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

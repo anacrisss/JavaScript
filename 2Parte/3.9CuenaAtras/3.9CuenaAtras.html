@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta Atrás</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #txtCuentaAtras {
+            font-size: 1.5rem;
+            color: white;
+            font-weight: bolder;
+            background-color: black;
+            margin: 20px auto;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 5px;
+            min-width: auto;
+            width: 80%;
+        }
+
+        #fechaElegida,
+        button {
+            font-size: 1rem;
+            padding: 10px;
+            margin: 5px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Cuenta Atrás para una Fecha</h1>
+    <input type="date" id="fechaElegida">
+    <button id="btnCuentaAtras">Iniciar Cuenta Atrás</button>
+    <div id="txtCuentaAtras">Introduce una fecha para comenzar.</div>
+
+    <script>
+        let temporizador = null
+        function comienza() {
+            let fechaElegidaInput = document.getElementById("fechaElegida").value
+            let txtCuentaAtrasDiv = document.getElementById("txtCuentaAtras")
+
+            if (!fechaElegidaInput) {
+                txtCuentaAtrasDiv.innerHTML = "Selecciona una fecha"
+                return
+            }
+
+            if(temporizador !== null){
+                clearInterval(temporizador) // parar el temposizador
+            }
+
+            const fechaElegida = new Date(fechaElegidaInput)
+
+            temporizador = setInterval(iniciarTemporizador, 1000) // enciendes el temporizador
+
+            function iniciarTemporizador() {
+                const hoy = new Date()
+                const difDias = fechaElegida - hoy
+
+                if (difDias <= 0) {
+                    clearInterval(temporizador)
+                    txtCuentaAtrasDiv.innerHTML = "Tiempo cumplido"
+                    return
+                }
+
+                // Calcular días, horas, minutos y segundos restantes
+                const days = Math.floor(difDias / (1000 * 60 * 60 * 24))
+                const hours = Math.floor((difDias % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+                const minutes = Math.floor((difDias % (1000 * 60 * 60)) / (1000 * 60))
+                const seconds = Math.floor((difDias % (1000 * 60)) / 1000).toString().padStart(2, '0')
+
+                txtCuentaAtrasDiv.innerHTML = `Tiempo que falta: ${days} días, ${hours} horas, ${minutes} minutos, ${seconds} segundos.`
+            }
+
+
+
+        }
+
+        document.getElementById('btnCuentaAtras').addEventListener('click', comienza);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function pelicula(genero, titulo, duracion) {
+            this.genero = genero;
+            this.titulo = titulo;
+            this.duracion = duracion;
+            
+            this.reproducir = function(){
+                document.write(`La película ${titulo} de genero ${genero} y director ${duracion} se está reproduciendo`+ "<br>")
+            }
+        }
+
+        let peli1 = new pelicula("miedo", "Los otros", "Amenabar")
+        let peli2 = new pelicula("CF","Avatar", "James Cameron")
+
+        peli1.reproducir() 
+        peli2.reproducir()
+
+
+
+    </script>
+
+</body>
+
+</html>

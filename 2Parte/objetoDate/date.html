@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        let mifecha = new Date()
+        let diasSemana = ["do", "lu", "mart", "mier","jue","vier","sabado"]
+        let dia = mifecha.getDay()
+        document.write(dia) 
+        document.write(diasSemana[6]) 
+        
+
+        let segundos = mifecha.getSeconds().toString().padStart(2,"0")
+        document.write(segundos)
+
+
+        let mifecha2 = new Date (2024,10,26,20,10,0)
+        document.write(mifecha2)
+
+
+
+      
+
+
+
+    </script>
+    
+</body>
+</html>

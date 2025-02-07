@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Me voy de viaje</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin: 15px 0;
+        }
+
+        input[type="date"], input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #555;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #resultados {
+            padding: 10px;
+            margin: 20px auto;
+            line-height: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            width: 80%;
+            border: 1px solid gray;
+        }
+
+        .radio-group {
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Elige tus vacaciones</h1>
+        <!-- Calendario de salida -->
+        <div class="form-group">
+            Día de salida: <input type="date" id="fechaSalida"><br>
+        </div>
+        <!-- Calendario de llegada -->
+        <div class="form-group">
+            Día de llegada: <input type="date" id="fechaLlegada"><br>
+        </div>
+        <!-- Botón para mostrar los resultados -->
+        <button id="btnMostrar">Muestra</button><br>
+        <!-- Destino -->
+        <div class="form-group">
+            Elige destino:
+            <div class="radio-group">
+                <input type="radio" name="destino" value="Oporto" id="Oporto">
+                <label for="Oporto">Oporto</label><br>
+                <input type="radio" name="destino" value="Lisboa" id="Lisboa">
+                <label for="Lisboa">Lisboa</label><br>
+                <input type="radio" name="destino" value="Madrid" id="Madrid">
+                <label for="Madrid">Madrid</label><br>
+                <input type="radio" name="destino" value="Barcelona" id="Barcelona">
+                <label for="Barcelona">Barcelona</label><br>
+                <input type="radio" name="destino" value="París" id="Paris">
+                <label for="Paris">París</label><br>
+                <input type="radio" name="destino" value="Roma" id="Roma">
+                <label for="Roma">Roma</label><br>
+            </div>
+        </div>
+        <!-- Div para mostrar el resultado del viaje -->
+        <div id="resultados">
+            Selecciona unas fechas de entrada y salida y una ciudad, y te diremos el coste
+        </div>
+    </div>
+
+    <script>
+        // Función para inicializar la lógica al hacer clic en el botón "Muestra"
+        function mostrarDetallesViaje() {
+            // 1. Captura de las fechas seleccionadas
+            const fechaSalida = document.getElementById("fechaSalida").value;
+            const fechaLlegada = document.getElementById("fechaLlegada").value;
+
+            // Comprobamos si las fechas están presentes
+            if (!fechaSalida || !fechaLlegada) {
+                alert("Por favor, selecciona ambas fechas de salida y llegada.");
+                return;
+            }
+
+            // Convertimos las fechas de string a objetos Date
+            const dateSalida = new Date(fechaSalida);
+            const dateLlegada = new Date(fechaLlegada);
+
+            // 2. Validación de las fechas
+            if (dateLlegada < dateSalida) {
+                alert("La fecha de llegada no puede ser anterior a la fecha de salida.");
+                return;
+            }
+
+            // 3. Cálculo de la duración del viaje en días
+            const duracionMs = dateLlegada - dateSalida; // Diferencia en milisegundos
+            const duracionDias = duracionMs / (1000 * 60 * 60 * 24); // Convertimos a días
+
+            // 4. Selección del destino
+            let destinoSeleccionado = null;
+            let costoPorDia = 0;
+
+            // Obtenemos la lista de radios para destinos y verificamos el seleccionado
+            const destinos = document.getElementsByName("destino");
+            for (const destino of destinos) {
+                if (destino.checked) {
+                    destinoSeleccionado = destino.value;
+                    switch (destinoSeleccionado) {
+                        case "Madrid":
+                            costoPorDia = 100;
+                            break;
+                        case "Oporto":
+                            costoPorDia = 150;
+                            break;
+                        case "Lisboa":
+                            costoPorDia = 120;
+                            break;
+                        case "Barcelona":
+                            costoPorDia = 200;
+                            break;
+                        case "París":
+                            costoPorDia = 250;
+                            break;
+                        case "Roma":
+                            costoPorDia = 180;
+                            break;
+                        default:
+                            costoPorDia = 0;
+                    }
+                    break;
+                }
+            }
+
+            // Validación para asegurarnos de que se ha seleccionado un destino
+            if (!destinoSeleccionado) {
+                alert("Por favor, selecciona un destino.");
+                return;
+            }
+
+            // 5. Cálculo del costo total del viaje
+            const costoTotal = duracionDias * costoPorDia;
+
+            // 6. Mostrar los resultados en la página
+            const resultadosDiv = document.getElementById("resultados");
+            resultadosDiv.innerHTML = `
+                <p>Fecha de salida: ${fechaSalida}</p>
+                <p>Fecha de llegada: ${fechaLlegada}</p>
+                <p>Destino: ${destinoSeleccionado}</p>
+                <p>Duración del viaje: ${duracionDias} días</p>
+                <p>Costo total del viaje: €${costoTotal}</p>
+            `;
+        }
+
+        // Asociamos la función al botón "Muestra"
+        document.getElementById("btnMostrar").addEventListener("click", mostrarDetallesViaje);
+    </script>
+</body>
+
+</html>

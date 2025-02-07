@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRÁCTICAS CON JAVASCRIPT</title>
+
+    <script>
+        let num1
+        let num2
+        function multiplica() {
+            n1 = document.getElementById("num1").value
+            n2 = document.getElementById("num2").value
+            if ((num1 > 10 || num1 < 0) || num2 > 10 || num2 < 0) {
+                alert("Los números deben ser mayores a 0 o menores a 10");
+            }
+            else {
+                let resultado = parseInt(n1) * parseInt(n2)
+                document.getElementById("resultado").innerHTML += "El resultado es : " + resultado
+            }
+        }
+
+        function borra(){
+        document.getElementById("resultado").innerHTML +"El texto está borrado"}
+    </script>
+
+</head>
+
+<body>
+
+    <h1>PRACTICA CON INPUT</h1>
+    Número 1:
+    <input type="number" id="num1" min="1" max="100">
+    Número 2:
+    <input type="number" id="num2" min="1" max="100">
+    <br>
+    <button onclick="multiplica()">Multiplica</button>
+    <br>
+    
+
+    <div id="resultado">
+        <h3>Aquí van los resultado</h3>
+    </div>
+
+    <button onclick="borra()">Borrar</button>
+    <div id=" borrar">
+        <h3>Aquí van los resultado</h3>
+        
+    </div>
+
+
+
+
+
+</body>
+
+</html>

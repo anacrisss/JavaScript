@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Me voy de viaje</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: rgb(7, 215, 108);
+      text-shadow: 2px 2px 5px black;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      background-color: #f1d8d8;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 600px;
+      text-align: center;
+    }
+
+    /* Uso display flex para organizar los destinos alineados respecto al radio */
+    #destinos {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #destinos label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      /* Espacio entre el radio y la etiqueta */
+      width: 100px;
+      /* Ajusta este ancho para alinear los radios */
+    }
+
+    .radio-group {
+      text-align: center;
+      display: flexbox;
+      align-content: center;
+    }
+
+    input[type="date"],
+    input[type="radio"] {
+      margin-right: 10px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      font-size: 16px;
+      color: #555;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      box-shadow: none;
+    }
+
+    button:hover {
+      background-color: #5ed163;
+    }
+
+    #resultados {
+      padding: 10px;
+      margin: 20px auto;
+      line-height: 25px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #eceaea;
+      width: 80%;
+      border: 1px solid gray;
+      background-color: #1c771f;
+    }
+
+    /* Uso display flex para organizar los inputs alineados respecto al boton muestra */
+    .form-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .inputs {
+      display: flex;
+      flex-direction: column;
+      align-items: self-end;
+    }
+
+    .muestra {
+      padding: 10px 20px;
+      background-color: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .muestra:hover {
+      background-color: darkgreen;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Elige tus vacaciones</h1>
+
+    <div class="form-group">
+      <div class="inputs">
+        <!-- Calendario de salida y llegada -->
+        <label>Dia de salida: <input type="date" id="salida"></label><br>
+        <label>Dia de llegada: <input type="date" id="llegada"></label>
+      </div>
+      <!-- botón de enviar, paso primero por el filtro de errores -->
+      <button onclick="mensajesError()" class="muestra">Muestra</button>
+    </div>
+
+    <!-- Destino -->
+    <div id="destinos">
+      <!-- Cambié los destino por lugares que me gustaría repetir o descubir -->
+      <p>Elige destino:</p>
+      <label><input type="radio" name="destino" value="Albania"> Albania</label><br>
+      <label><input type="radio" name="destino" value="Argentina">Argentina</label><br>
+      <label><input type="radio" name="destino" value="Azores"> Azores</label><br>
+      <label><input type="radio" name="destino" value="Napoles"> Nápoles</label> <br>
+      <label><input type="radio" name="destino" value="Lisboa"> Lisboa</label><br>
+      <label><input type="radio" name="destino" value="Islandia"> Islandia</label><br>
+    </div>
+
+  </div>
+  <div id="resultados">
+    <!-- Div para mostrar el viaje -->
+    
+  </div>
+
+  <div>
+    <p><strong>Nota: Selecciona unas fechas de entrada y salida y una ciudad y te diremos el coste</strong></p>
+    <p><strong>Condiciones: </strong>Debes elegir una ciudad. No puedes dejar vacia ninguna fecha, ni salir antes que hoy, ni poner una llegada anterior a la salida</p>
+  </div>
+
+  <script>
+    /* guardo en variable lo que recoja los input. lo hago fuera para no tener que hacerlo
+        en cada funcion */
+    const inputfechaSalida = document.getElementById("salida")
+    const inputfechaLlegada = document.getElementById("llegada")
+    
+
+    // creo las variables globales que voy a necesitar en las diferentes funciones
+    let fechaSalida
+    let fechaLlegada
+    let ciudadSeleccionada
+    let costeTotal
+    let precioDia
+
+    // esta es la primera  funcion que se ejecuta y manejo todos los errores posibles
+    /***************  function mensajesError()    ****************/
+    function mensajesError() {
+
+      //dentro de la funcion actualizaré las globales creando un valor Date con lo que se rescate del input
+      fechaSalida = new Date(inputfechaSalida.value);
+      fechaLlegada = new Date(inputfechaLlegada.value);
+
+      // creo una variable con el día de hoy
+      let fechaHoy = new Date()
+
+      /* Por no hacer esto me daba tambien problemas el cotejar
+      que no se introjera una fecha anterior a hoy. No lo pedía el ejercicio creo.
+      Ahora al borrar la hora ya no me da error si pongo la salida la fecha de hoy
+      */
+      fechaHoy.setHours(0, 0, 0, 0);
+
+      /* compruebo los distintos errores que puedan producirse
+            ¡ojo! acordarse que isNaN solo funciona en numeros y debo trabajar sobre Time y no Date
+            y no olvidar los parentesis despues de cada función get !! que se me olvidan a cada rato*/
+
+            // compruebo que no se elije una fecha de salida anterior a hoy, ni que de error elegir hoy
+      if (fechaSalida.getTime() < fechaHoy.getTime()) {
+        alert("No puedes elegir una fecha anterior a hoy")
+
+        return
+      }
+      // compruebo no me salia de forma más sencilla que ambas fechas son válidas y elegidas
+      else if (isNaN(fechaLlegada.getTime()) || isNaN(fechaSalida.getTime())) {
+        alert("Una de las dos fechas no es válida o no ha sido elegida")
+        return
+      }
+
+      // compruebo que la fecha de salida no sea posterior a la llegada
+      else if (fechaSalida > fechaLlegada) {
+       alert ("La fecha de llegada no puede ser anterior a la salida")
+        return
+      }
+
+      // compruebo que las dos fechas no sean iguales
+      else if (fechaSalida.getTime() == fechaLlegada.getTime()) {
+        alert("La fecha de llegada no puede ser igual a la salida")
+        return
+      }
+
+      // compruebo que se haya introducido una ciudad
+      // Recorro con un forEach todos los botones radio y el que está seleccionado le asigno una variable
+      let ciudad = document.getElementsByName("destino")
+      ciudad.forEach(ciudadF => {
+        if (ciudadF.checked)
+          ciudadSeleccionada = ciudadF.value
+      })
+
+      if (!ciudadSeleccionada) {
+        alert("¡Por favor, selecciona una ciudad!");
+        return;
+      }
+
+
+      /* si no encuetra ningún error se ejecuta mostrar resultados */
+      else mostrarResultados()
+    }
+
+   
+    /***************  function mostrarResultados()   ****************/
+     /* Una vez pasado el filtro de errores esta función calcula los días se muestran resultados*/
+
+    function mostrarResultados() {
+
+      // ahora convierto a una cadena corta de fecha los valores que usaré en el print
+      let miSalida = fechaSalida.toLocaleDateString()
+      let miLLegada = fechaLlegada.toLocaleDateString()
+
+      // variables para calcular la diferencia dias
+      let difDias = fechaLlegada - fechaSalida
+      let diasTotales = difDias / (1000 * 60 * 60 * 24)
+
+
+      /* por no mezclar mucho el código y ser más extenso el calculo del presupuesto
+     hago el calculo del coste de ciudades en otra función a la que llamo aquí*/
+      calculoCoste(diasTotales)
+
+      // muestro todos los valores usando variables locales y globales
+      document.getElementById("resultados").innerHTML = `Tus vacaciones serán del ${miSalida} al ${miLLegada} <br>`
+      document.getElementById("resultados").innerHTML += `Tus vacaciones son de ${diasTotales} dias en ${ciudadSeleccionada} <br>`
+      document.getElementById("resultados").innerHTML += `Tus vacaciones tienen un coste total de ${costeTotal}€ ya que cada día cuesta ${precioDia}`
+    }
+
+    
+    /************* function calculoCoste()  *************/
+    /* con esta funcion vamos a calcular el coste del viaje*/
+
+    function calculoCoste(diasTotales) {
+      
+      /* Uso de switch-case con la ciudad seleccionada, 
+      donde asigno los precios por dia
+          */
+      switch (ciudadSeleccionada) {
+        case "Albania":
+          precioDia = 65;
+          break;
+        case "Argentina":
+          precioDia = 80;
+          break;
+        case "Azores":
+          precioDia = 90;
+          break;
+        case "Napoles":
+          precioDia = 45;
+          break;
+        case "Lisboa":
+          precioDia = 60;
+          break;
+        case "Islandia":
+          precioDia = 120;
+          break;
+
+      }
+      // calculo total de viaje
+      costeTotal = precioDia * diasTotales;
+
+      /* retorno a la función mostrarResultados() 
+      con todas las variables que se han calculado aquí */
+      return (costeTotal, ciudadSeleccionada, precioDia)
+
+    }
+
+  </script>
+
+</body>
+
+</html>

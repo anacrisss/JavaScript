@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        input {
+
+            margin: 0 10px;
+        }
+        #nombre {
+            margin-top: 20px;
+        }
+        #resultados {
+            margin-top: 20px;
+        }
+        button {
+            margin: 20px 0;
+        }
+
+
+    </style>
+
+    <script>
+        let num1
+        let num2
+        function multiplica() {
+            num1 = document.getElementById("numero1").value
+            num2 = document.getElementById("numero2").value
+            let numOk = false
+            if (num1 > 10 || num1<0 || num2 > 10 || num2<0) {
+                alert("Los números deben ser mayor que 0 y menor que 10");
+            } else {
+                numOk = true
+            }
+
+            if (numOk) {
+               let resultado = num1 * num2
+            document.getElementById("resultados").innerHTML += "El resultado es de la multiplicación es: " + resultado + "<br>";
+            document.getElementById("numero1").innerHTML="1"
+            }
+        }
+
+        function borra() {
+            
+            document.getElementById("resultados").innerHTML = "Aquí iran los resultados<br>"
+        }
+    </script>
+    
+</head>
+
+<body>
+    <h2>PRACTICAS CON INPUT</h2>
+    <div>
+        Numero 1: <input type="number" id="numero1" min="1" max="10" value="1" placeholder="1">
+        Numero 2: <input type="number" id="numero2" min="1" max="10" value="1">
+    </div>
+    <button onclick="multiplica()">Multiplica</button>
+    <button onclick="borra()">Borra</button>
+
+    <div id="resultados">
+        Aquí iran los resultados<br>
+    </div>
+    
+</body>
+
+</html>

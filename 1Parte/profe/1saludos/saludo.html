@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        div {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            align-items: center;
+        }
+
+        button {
+            width: 100px;
+            height: 20px;
+        }
+    </style>
+    <script>
+        let saludoI = "Hellow!!"
+        function saludoIngles() {
+             alert (saludoI)
+        }
+    </script>
+    <script src="aleman.js">
+
+    </script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Saludo desde diferentes idiomas</h1>
+    <div class="saludos"><button onclick="(alert('Hola'))">Hola!!</button> 
+        <p>Hola, soy español y te saludo desde la etiqueta</p>
+    </div>
+    <div class="saludos"><button onclick="saludoFrances()">Bonjour!!</button>
+        <p>Hola, soy frances y te saludo desde el body</p>
+    </div>
+    <div class="saludos"><button onclick="saludoIngles()">Hellow!!</button>
+        <p>Hola, soy ingles y te saludo desde la head</p>
+    </div>
+    <div class="saludos"><button onclick="saludoAleman()">Hallo!!</button>
+        <p>Hola, soy alemas y te saludo desde un fichero externo</p>
+    </div>
+    <!-- SALUDO EN FRANCES -->
+    <script>
+        let saludo = "Bonjour!!"
+        function saludoFrances() {
+             alert ("Te saludo en frances: " + saludo)
+        }
+       
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>

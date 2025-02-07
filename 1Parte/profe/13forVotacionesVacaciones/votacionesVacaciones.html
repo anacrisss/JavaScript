@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta de Vacaciones</title>
+    <style>
+        .form {
+            margin: 20px;
+            width: fit-content;
+            border: 1px solid gainsboro;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px gray;
+        }
+     
+    </style>
+</head>
+
+<body>
+    <h1>Vamos de vacaciones</h1>
+    Encuesta para elegir tu lugar de vacaciones
+    <div class="form">
+        <input type="radio" name="lugar" value="canarias">
+        <label for="lugar">Canarias</label>
+        <input type="radio" name="lugar" value="baleares">
+        <label for="lugar">Baleares</label>
+        <input type="radio" name="lugar" value="maldivas">
+        <label for="lugar">Maldivas</label>
+        <input type="radio" name="lugar" value="puntaCana">
+        <label for="lugar">Punta Cana</label>
+        <input type="radio" name="lugar" value="peniscola">
+        <label for="lugar">Peñiscola</label><br>
+    </div>
+    
+    <button onclick="votar()">Enviar voto</button>
+    <button onclick="reset()">Reset</button>
+
+    <h3>Resultados de votaciones:</h3>
+    <div id="votaciones">
+        <ul>
+            <li>Canarias: </li>
+            <li>Baleares: </li>
+            <li>Maldivas: </li>
+            <li>Punta Cana: </li>
+            <li>Peñiscola: </li>
+        </ul>
+    </div>
+
+    <script>
+        // Inicialización de los contadores de votos
+        let canarias = 0, baleares = 0, maldivas = 0, puntaCana = 0, peniscola = 0
+
+        function votar() {
+            // Obtenemos todas las opciones de radio
+            let lugares = document.getElementsByName("lugar")
+            let seleccion = null
+
+            // Recorremos los input type radio para ver cuál está seleccionada
+            for (let i = 0; i < lugares.length; i++) {
+                if (lugares[i].checked) { //si está chequeado
+                    seleccion = lugares[i].value //capturo su valor
+                    break // Una vez encontrada el chequeado, salimos del bucle
+                }
+            }
+
+            // Aumentamos el contador según la opción seleccionada
+            switch (seleccion) {
+                case "canarias":
+                    canarias++ 
+                    break
+                case "baleares":
+                    baleares++
+                    break
+                case "maldivas":
+                    maldivas++
+                    break
+                case "puntaCana":
+                    puntaCana++
+                    break
+                case "peniscola":
+                    peniscola++
+                    break
+                default:
+                    alert("Por favor, selecciona una opción antes de votar.")
+                    return
+            }
+
+            // Actualizamos el div con los resultados
+            actualizarVotaciones()
+        }
+
+        function actualizarVotaciones() {
+            // Obtenemos el div donde se moTMLstrarán los resultados
+            let votacionesDiv = document.getElementById("votaciones")
+
+            // Actualizamos el contenido del div con los valores actuales de votos
+            votacionesDiv.innerHTML = `
+                <ul>
+                    <li>Canarias: ${canarias} votos</li>
+                    <li>Baleares: ${baleares} votos</li>
+                    <li>Maldivas: ${maldivas} votos</li>
+                    <li>Punta Cana: ${puntaCana} votos</li>
+                    <li>Peñiscola: ${peniscola} votos</li>
+                </ul>
+            `
+        }
+
+        function reset() {
+            
+            canarias = 0, baleares = 0, maldivas = 0, puntaCana = 0, peniscola = 0
+            document.getElementById("votaciones").innerHTML = `
+                <ul>
+                    <li>Canarias: </li>
+                    <li>Baleares: </li>
+                    <li>Maldivas: </li>
+                    <li>Punta Cana: </li>
+                    <li>Peñiscola: </li>
+                </ul>
+            `
+        }
+    </script>
+</body>
+
+</html>

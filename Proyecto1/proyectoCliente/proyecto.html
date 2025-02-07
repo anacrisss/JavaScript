@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Me voy de viaje</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin: 15px 0;
+        }
+
+        input[type="date"], input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #555;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #resultados {
+            padding: 10px;
+            margin: 20px auto;
+            line-height: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            width: 80%;
+            border: 1px solid gray;
+            
+        }
+
+        .radio-group {
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Elige tus vacaciones</h1>
+        <!-- Calendario de salida -->
+        <div class="form-group">
+            Dia de salida: <input type="date"><br>
+        </div>
+        <!-- Calendario de llegada -->
+        <div class="form-group">
+            Dia de llegada: <input type="date"><br>
+        </div>
+        <button>Muestra</button><br>
+        <!-- Destino -->
+        <div class="form-group">
+            Elige destino:
+            <div class="radio-group">
+                <input type="radio" name="ciudad">
+                <label for="Oporto">Oporto</label><br>
+                <input type="radio" name="ciudad">
+                <label for="Lisboa">Lisboa</label><br>
+                <input type="radio" name="ciudad">
+                <label for="Madrid">Madrid</label><br>
+                <input type="radio" name="ciudad">
+                <label for="Barcelona">Barcelona</label><br>
+                <input type="radio" name="ciudad">
+                <label for="Paris">París</label><br>
+                <input type="radio" name="ciudad">
+                <label for="Roma">Roma</label><br>
+            </div>
+        </div>
+        <!-- Div para mostrar el viaje -->
+        <div>
+            Selecciona unas fechas de entrada y salida y una ciudad y te diremos el coste
+        </div>
+    </div>
+
+    <script>
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Juego de la patata</h1>
+    <button onclick="jugar()">Jugar</button>
+
+    <script>
+        let numeroAleatorio = Math.floor((Math.random() * 100) + 1); // redondeo hacia abajo
+        let vidas = 5;
+        let numeroElegiodo = 0;
+
+        do {
+            numeroElegiodo = parseInt(prompt("Elige un número"));
+
+            if (numeroElegiodo > numeroAleatorio) {
+                vidas--;
+                alert("El número es menor, te quedan " + vidas + "vidas")
+            }
+            else if (numeroAleatorio > numeroElegiodo) {
+                vidas--;
+                alert("El número es mayor, te quedan " + vidas + "vidas");
+            }
+            else {
+                alert("Has acertado")
+            }
+
+            if (vidas == 0) {
+                alert("Lo siento, fallaste, el número era " + numeroAleatorio)
+            }
+
+
+        } while (numeroAleatorio != numeroElegiodo) {
+
+        }
+
+    </script>
+
+</body>
+
+</html>

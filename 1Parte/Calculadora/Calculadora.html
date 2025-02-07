@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    
+    <style>
+       body{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+       }
+
+       h2{
+        color: blue;
+        text-shadow: 2px 2px 5px black;
+       }
+
+       button{
+        width: 100px;
+       }
+
+       div{
+        margin-top: 10px;
+        border: 1px solid black;
+        width: 250px;
+        padding: 10px;
+        display: flex;
+        justify-content: space-evenly;
+        border-radius: 5px;
+       } 
+    </style>
+
+    <script>
+        let num1=0;
+        let num2=0;
+
+        function n3(){
+            num1=3;
+            alert ("Has elegido el número: " + num1)            
+        }
+
+        function n5(){
+            num1=5;
+            alert ("Has elegido el número: " + num1)            
+        }
+
+        function n7(){
+            num2=7;
+            alert ("Has elegido el número: " + num2)            
+        }
+
+        function n9(){
+            num2=9;
+            alert ("Has elegido el número: " + num2)            
+        }
+
+        function suma(){
+            let resultado = num1 + num2;
+            alert("El resultado es: " + resultado)
+        }
+
+        function multiplicar(){
+            let resultado = num1 * num2;
+            alert("El resultado es: " + resultado)
+        }
+
+
+    </script>
+
+</head>
+
+<body>
+    <h2>CALCULADORA SIMPLE</h1>
+    <p>Haz clic en los botones para seleccionar dos números y ver la suma</p>
+    <h3>NUMERO 1</h3>
+    <button onclick="n3()">Número 3</button>
+    <button onclick="n5()">Número 5</button>
+
+    <h3>NUMERO 2</h3>
+    <button onclick="n7()">Número 7</button>
+    <button onclick="n9()">Número 9</button>
+
+    <div>
+        <button onclick="suma()">suma</button>
+        <button onclick="multiplicar()">multiplicar</button>
+    </div> 
+
+
+
+
+    
+</body>
+</html>

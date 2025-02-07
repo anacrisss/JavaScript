@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Atletas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        input,
+        select,
+        button {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        #divListado,
+        #divEntrenamiento {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            width: 60%;
+        }
+
+        .atleta {
+            padding: 8px;
+            background-color: #ecf0f1;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        .atleta:nth-child(even) {
+            background-color: #eaf2f8;
+        }
+    </style>
+</head>
+
+<body>
+    Nombre: <input type="text" placeholder="Nombre ..." id="txtNombre">
+    Edad: <input type="number" min="10" max="99" id="txtEdad">
+    Especialidad: <select id="txtEspecialidad">
+        <option value="" selected>Selecciona una opción</option>
+        <option value="atletismo">Atletismo</option>
+        <option value="remo">Remo</option>
+        <option value="judo">Judo</option>
+        <option value="tenis">tenis</option>
+        <option value="natacion">Natación</option>
+        <option value="ciclismo">Ciclismo</option>
+    </select><br>
+    Agrega deportista: <button id="btnAgregar">Agrega</button><br>
+    Ponlo a entrenar: <button id="btnEntrenar">Entrenar</button>
+    <div id="divListado"></div>
+    <div id="divEntrenamiento"></div>
+    <script>
+        //Crear clase atleta
+        class Atleta {
+            constructor(nombre, edad) {
+                this.nombre = nombre
+                this.edad = edad
+            }
+        }
+        //Crear clase Deporte que herada de atleta
+        class Deporte extends Atleta {
+            constructor(nombre, edad, especialidad) {
+                super(nombre, edad)
+                this.especialidad = especialidad
+            }
+        }
+        //Crear prototipo entrenar
+        Atleta.prototype.entrenar = function(){
+            return this.nombre + " de " + this.edad + " está entrenanado"
+        }        
+        
+
+        //Crear prototipo entrenamiento
+        Deporte.prototype.entrenamiento = function(){
+            return "Además " + this.nombre + " está practicando" + this.especialidad
+        }
+       
+
+        //Crear array atletas
+        let arrAtletas = []
+        
+
+        //Funcion para agregar atleta
+        function agregarAtleta(){
+            let nombreAtleta = document.querySelector("#txtNombre").value
+            let edadAtleta = Number(document.querySelector("#txtEdad").value)
+            let especialidadAtleta = document.querySelector("#txtEspecialidad").value
+
+            if(nombreAtleta && (edadAtleta > 10) && (edadAtleta < 99) && especialidadAtleta){
+                let nuevoAtleta = new Deporte(nombreAtleta, edadAtleta, especialidadAtleta)
+                arrAtletas.push(nuevoAtleta)
+                mostrarAtletas()
+            }
+            else{
+                alert("Faltan datos o son incorrectos")
+            }
+        }
+         
+        //Funcion para mostrar atletas
+
+        function mostrarAtletas(){
+            let listado = document.getElementById("divListado")
+            listado.innerHTML = " "
+            for(let a of arrAtletas){
+                listado.innerHTML += "Nombre " + a.nombre + " Edad: " + a.edad + " Deporte: " + a.especialidad + "<br>"
+            }
+        }
+
+        //Funcion para poner a entrenar
+
+        function ponerAEntrenar(){
+            let entrenamiento = document.querySelector ("#divEntrenamiento")
+            entrenamiento.innerHTML = " "
+            for (let a of arrAtletas){
+                entrenamiento.innerHTML += a.entrenar() + " // " + a.entrenamiento() + "<br>"
+            }
+        }
+
+        //Añadir eventos
+        document.getElementById("btnAgregar").addEventListener("click", agregarAtleta)
+        document.getElementById("btnEntrenar").addEventListener("click", ponerAEntrenar)
+    </script>
+</body>
+
+</html>

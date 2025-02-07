@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let miArray = new Array()
+        miArray [0]= "Zaragoza"
+        document.write(miArray +"<br>")
+        miArray = ["Zaragoza","Huesca","Teruel"]
+        document.write(miArray +"<br>")
+        document.write(miArray.length +"<br>") // Conocer la longitud del array
+        document.write(miArray[2]+"<br>")
+
+       // miArray.length = 0; // se pone a 0, se borran 
+        //miArray=[] //tmb borra los elemento que hay dentro del array
+        document.write(miArray.length +"<br>")
+
+        miArray.push("Burgos") //añadir elemento al FINAL
+        document.write(miArray +"<br>")
+
+        miArray.unshift("Pamplona") // añadir elemento al PRINCIPIO
+        document.write(miArray +"<br>")
+
+        //RECORRE UN ARRAY
+        let numeros = [10,20,30,40]
+        for(i = 0; i < numeros.length; i++){
+            document.write(numeros +"<br>")            
+        }
+
+
+
+
+    </script>
+
+    
+
+    
+</body>
+</html>

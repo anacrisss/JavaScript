@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Arrays</h1>
+    <input type="text" placeholder="Añade algo" id="elementos">
+
+    <button id="anade">Añade elemento</button>
+    <button id="borrar">Borrar</button>
+    <button id="borrarUltima">Borrar Última</button>
+    <button id="borrarPrimero">Borrar Primero</button>
+
+    <div id="divArray"></div>
+
+
+    <script>
+        let miArray = new Array()
+        document.getElementById("anade").addEventListener( // otra forma de hacer el onclick del button
+            "click",
+            function () {
+                let nuevoElemento = ""
+                nuevoElemento = document.getElementById("elementos").value
+
+                if (nuevoElemento) {
+                    miArray.push(nuevoElemento)
+                    document.getElementById("elementos").value = ""
+                    mostrarArray()
+                }
+                else {
+                    alert("No has añadido nada")
+                }
+            }
+        )
+
+        function mostrarArray() {
+            document.getElementById("divArray").innerHTML = "<ul>"
+
+            for (let alimento of miArray) {
+                document.getElementById("divArray").innerHTML += `<li>${alimento}</li>`
+            }
+            document.getElementById("divArray").innerHTML += `<ul>`
+
+        }
+
+        document.getElementById("borrar").addEventListener(
+            "click",
+            function () {
+                miArray = []
+                mostrarArray()
+            }
+        )
+
+        document.getElementById("borrarUltima").addEventListener(
+            "click",
+            function () {
+                miArray.pop() //borra la ultiam posición del array
+                mostrarArray()
+            }
+        )
+
+        document.getElementById("borrarPrimero").addEventListener(
+            "click",
+            function () {
+                miArray.shift() //borra primer elemento del array
+                mostrarArray()
+            }
+        )
+
+
+
+    </script>
+
+</body>
+
+</html>

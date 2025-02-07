@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Juego de la patata</h1>
+    <h2>Pulsa en el botón e introduce un numero del 1 al 100</h2>
+    <p>Ve leyendo los alerts para intentar adivinar el número</p>
+    <!-- <input type="number" min="1" max="100" onkeypress="false" id="patata"> -->
+    <button onclick="adivinalo()">Quiero jugar!!!!</button>
+    <div id="resultado"></div>
+
+
+    <script>
+        function adivinalo() {
+            let numeroPatata = Math.floor((Math.random() * 100 + 1))
+            alert(numeroPatata)
+            let numeroElegido = 0
+            let numeroCorrecto = false
+            let oportunidades = 5
+            do {
+                do {
+                    numeroElegido = parseInt(prompt("Elige un numero: "))
+                } while (isNaN(numeroElegido))
+                if (numeroElegido > numeroPatata) {
+                    oportunidades--
+                    alert("El numero es menor, te quedan " + oportunidades + " oportunidades")
+                } else if (numeroPatata > numeroElegido) {
+                    oportunidades--
+                    alert("El numero es mayor, te quedan " + oportunidades + " oportunidades")
+                } else if (numeroPatata == numeroElegido) {
+                    alert("Acertaste!!!")
+                    numeroCorrecto = true
+                }
+                if (oportunidades == 0) {
+                    alert("El juego se terminó. El número era: " + numeroPatata)
+                    break
+                }
+            } while (!numeroCorrecto)
+
+
+
+        }
+    </script>
+</body>
+
+</html>

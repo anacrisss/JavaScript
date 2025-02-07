@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta de Vacaciones</title>
+    <style>
+        .form {
+            margin: 20px;
+            width: fit-content;
+            border: 1px solid gainsboro;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px gray;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Vamos de vacaciones</h1>
+    Encuesta para elegir tu lugar de vacaciones
+    <div class="form">
+        <input type="radio" name="lugar" value="canarias">
+        <label for="lugar">Canarias</label>
+        <input type="radio" name="lugar" value="baleares">
+        <label for="lugar">Baleares</label>
+        <input type="radio" name="lugar" value="maldivas">
+        <label for="lugar">Maldivas</label>
+        <input type="radio" name="lugar" value="puntaCana">
+        <label for="lugar">Punta Cana</label>
+        <input type="radio" name="lugar" value="peniscola">
+        <label for="lugar">Peñiscola</label><br>
+    </div>
+
+    <button onclick="enviarVoto()">Enviar voto</button>
+    <button onclick="actualizaVoto()">Reset</button>
+
+    <script>
+        let canarias = 0, baleares = 0; maldivas = 0; puntaCana = 0; peñiscola = 0;
+
+        let lugares = document.getElementsByName("lugar")
+        let seleccion = ""
+
+        function enviarVoto() {
+            for (let i = 0; i < lugares.length; i++) {
+                if (lugares[i].checked) {
+                    seleccion = lugares[i].value
+                    break
+                }
+            }
+        }
+
+        function actualizaVoto() {
+            switch (seleccion) {
+                case "canarias":
+                    canarias++
+                    break
+                case "baleares":
+                    baleares++
+                    break
+                case "maldivas":
+                    maldivas++
+                    break
+                case "puntaCana":
+                    puntaCana++
+                    break
+                case "peniscola":
+                    peniscola++
+                    break
+            }
+        }
+
+    </script>
+
+    <h3>Resultados de votaciones:</h3>
+    <div>
+        <ul>
+            <li">Canarias: ${canarias} votos</li>
+                <li>Baleares: ${baleares} votos</li>
+                <li>Maldivas: ${maldivas} votos</li>
+                <li>Punta Cana: ${puntaCana} votos</li>
+                <li>Peñiscola: ${peniscola} votos</li>
+        </ul>
+    </div>
+
+
+</body>
+
+</html>

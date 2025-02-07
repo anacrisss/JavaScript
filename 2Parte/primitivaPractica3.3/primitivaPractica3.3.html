@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primitiva</title>
+</head>
+
+<body>
+    <h1>Numeros primitiva</h1>
+    <button id="btngeneraNumeros">Dame la combinación ganadora</button>
+    <div>
+        <ul id="resultados"></ul>
+    </div>
+    <script>
+
+        let res = document.getElementById("resultados")
+
+        //Capturo evento click
+        document.getElementById("btngeneraNumeros").addEventListener(
+            "click",
+            generaNumeros)
+
+
+
+        //funcion para generar los 6 números
+
+        function generaNumeros() {
+            let numerosPrimitiva = []
+            let numerosAleatorios = 0
+            let i = 0
+            do {
+                numerosAleatorios = Math.floor((Math.random() * 49) + 1) //Redondea hacia abajo al entero más cercano
+                let existeNumero = numerosPrimitiva.includes(numerosAleatorios) 
+                if (!existeNumero) {
+                    numerosPrimitiva.push(numerosAleatorios) // añade en la ultima posición
+                    i++
+                }
+
+            } while (i < 6)
+            ordenaNumeros(numerosPrimitiva)
+            escribirNumeros(numerosPrimitiva)
+
+        }
+
+        //función para ordenar los numeros
+
+        function ordenaNumeros(numerosPrimitiva) {
+            numerosPrimitiva.sort((a, b) => a - b)
+        }
+
+        //función para escribir los numeros
+
+        function escribirNumeros(numerosPrimitiva) {
+            res.innerHTML = ""
+            for (let n of numerosPrimitiva) {
+                res.innerHTML += "<li>" + n + "</li>"
+            }
+        }
+
+    </script>
+
+
+</body>
+
+</html>

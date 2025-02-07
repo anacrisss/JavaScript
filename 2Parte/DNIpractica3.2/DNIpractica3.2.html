@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNI</title>
+</head>
+
+<body>
+    <h1>Comprobar letra DNI</h1>
+    Introduce DNI:
+    <input type="number" placeholder="Introduce DNI ..." id="txtDNI">
+    <button id="btnComprobar">Comprobar</button>
+    <script>
+        //Array de letras
+        const letrasDNI = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E']
+
+        //Función que comprueba el DNI
+        function comprobarDNI(){
+            let DNI = document.getElementById("txtDNI").value
+            if (DNI.length == 8) {
+                let numeroDNI = Number(DNI)
+                let index = numeroDNI % 23
+                let letraCalculada = letrasDNI[index]
+                alert(`Para el DNI ${DNI} la letra correcta es ${letraCalculada}`)
+
+            }
+            else {
+                alert("El DNI debe ser de 8 dígitos")
+            }
+        }
+
+
+
+        //Añado evento click al botón
+        document.getElementById("btnComprobar").addEventListener(
+            "click",
+            // function () {
+            //     comprobarDNI()
+            // }
+
+            comprobarDNI // es igual que el trozo de código comentado arriba
+
+        )
+
+    </script>
+</body>
+
+</html>

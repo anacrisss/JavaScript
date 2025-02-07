@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>While</title>
+    <style>
+        button {
+            margin-bottom: 15px;
+            width: 50px;
+        }
+        #resultado {
+            visibility: hidden;
+            border: 1px solid blue;
+            padding: 15px;
+            width: fit-content;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>While</h1>
+    <h3>Pulsa en los botones y te daremos los 10 primeros cuadrados</h3><br>
+    <!-- Botones para seleccionar un número base, cada uno llama a la función cuadrado() con un valor específico -->
+    <button onclick="cuadrado(2)">2</button>
+    <button onclick="cuadrado(3)">3</button>
+    <button onclick="cuadrado(4)">4</button>
+    <button onclick="cuadrado(5)">5</button>
+    <button onclick="cuadrado(6)">6</button>
+    <button onclick="cuadrado(7)">7</button>
+    <button onclick="cuadrado(8)">8</button>
+    <button onclick="cuadrado(9)">9</button>
+
+    <!-- Div donde se mostrarán los resultados de las potencias -->
+    <div id="resultado">
+
+    </div>
+
+    <script>
+        // Función para calcular las potencias de un número base
+        function cuadrado(n) {
+            // Obtiene el elemento div donde se mostrará el resultado
+            let res = document.getElementById("resultado");
+            res.innerHTML = ""; // Limpia el contenido previo
+            res.style.visibility = "visible"; // Muestra el div
+
+            // Variables para el cálculo de la potencia
+            let expo = 0; // Exponente inicial
+            let numero = Number(n); // Convierte el valor base a número
+            let potencia = 0; // Inicializa la variable para el resultado de la potencia
+
+            // Bucle while para calcular y mostrar las primeras 10 potencias del número
+            while (expo <= 10) {
+                potencia = numero ** expo; // Calcula la potencia del número base
+                // Condición para el último elemento, que no tendrá guion al final
+                if (expo == 10) {
+                    document.getElementById("resultado").innerHTML += potencia; // Añade el último valor sin guion
+                } else {
+                    document.getElementById("resultado").innerHTML += potencia + " - "; // Añade el valor y un guion
+                }
+                expo += 1; // Incrementa el exponente en 1
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

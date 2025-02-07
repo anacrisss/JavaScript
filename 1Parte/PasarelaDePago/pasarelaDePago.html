@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasarela de Pago</title>
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            margin: 10px;
+        }
+
+        body {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        .form-container {
+            border: 1px solid gray;
+            width: 600px;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            gap: 5px;
+            margin: 10px;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid gainsboro;
+        }
+
+        input[type="button"] {
+            width: 100px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .form-card {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .form-card input {
+            padding: 8px;
+        }
+
+        .card-number {
+            flex: 4;
+        }
+
+        .mesCaducidad,
+        .anyoCaducidad {
+            flex: 1;
+        }
+
+        /* Elimina de los input number las flechas  */
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        #resultado {
+            font-size: 20px;
+            margin: 10px;
+        }
+
+        #btnComprar:hover {
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <h1>Pasarela de pago</h1>
+
+    <div class="form-container">
+        <label for="nombre">Introduce tu nombre completo:</label>
+
+        <input type="text" id="nombre" placeholder="Indica tu nombre..." onkeydown="return evitaNumeros(event)">
+
+        <label for="numeroTarjeta">Indica la numeración de tu tarjeta:</label>
+        <div class="form-card">
+            <input type="number" id="numeroTarjeta" class="card-number"
+                placeholder="Número de tarjeta (sin guiones) ..." maxlength="16">
+            <input type="number" id="mesCaducidad" class="mesCaducidad" placeholder="Mes" maxlength="2">
+            <input type="number" id="anyoCaducidad" class="anyoCaducidad" placeholder="Año" maxlength="2">
+        </div>
+        <input type="button" id="btnComprar" value="Comprar" onclick="chequeaCompra()">
+    </div>
+    <div id="resultado">
+        <!-- div para ir colocando los resultados de la comprobación de la tarjeta -->
+    </div>
+    <script>
+
+
+        
+        function chequeaCompra() {
+        
+            
+        }
+
+        function chequeaNombre() {
+                       
+        }
+
+        function chequeaTarjeta() {
+            
+        }
+
+        function evitaNumeros(e) {
+            //obtengo el ASCII de la tecla pulsada
+            let key = e.keyCode || e.which;
+            // Permitir solo letras: mayúsculas (65-90) y minúsculas (97-122)
+            if ((key >= 65 && key <= 90) || (key >= 97 && key <= 122) ||  key ==8) {
+                return true; // Permitir la entrada de letras
+            } else {
+                return false; // Bloquear cualquier otro carácter
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

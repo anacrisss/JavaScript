@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #color {
+        width: 100px;
+        
+      }
+        #caja {
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+        margin: 20px;
+        transition: 3s;
+        background-color: black;
+      }
+    </style>
+</head>
+<header><h1>Switch</h1></header>
+<body>
+    <h3>Elige color: </h3> 
+    <select name="color" id="colorRectangulo" onchange="cambiaColor()">
+        <option value="negro" selected>Negro</option>
+        <option value="blanco">Blanco</option>
+        <option value="azul">Azul</option>
+    </select>
+    <br>
+    <h3>Elige tamaño:</h3>
+    <select name="tamano" id="tamanoRectangulo" onchange="cambiaTamano()">
+        <option value="100">100</option>
+        <option value="200" selected>200</option>
+        <option value="300">300</option>
+    </select>
+    <br>
+    <h3>Elige radio de los bordes:</h3>
+    <select name="radius" id="radioRectangulo" onchange="cambiaRadio()">
+        <option value="25" selected>25%</option>
+        <option value="50">50%</option>
+        <option value="75">75%</option>
+    </select>
+
+    <div id="caja"></div>
+
+    <script>
+        function cambiaColor(){
+            let colorCaja = document.getElementById("colorRectangulo").value;
+            let colorAplicar = document.getElementById("caja");
+            switch (colorCaja){
+                case "negro":
+                    colorAplicar.style.backgroundColor = "black";
+                    break;
+                case "blanco":
+                    colorAplicar.style.backgroundColor = "white";
+                    break;
+                case "azul":
+                    colorAplicar.style.backgroundColor = "blue";
+                    break;
+                default:
+                    colorAplicar.style.backgroundColor = "black";
+            } 
+        }
+
+
+        function cambiaTamano(){
+            let tamanoCaja = document.getElementById("tamanoRectangulo").value;
+            let tamanoAplicar = document.getElementById("caja");
+            switch (tamanoCaja){
+                case "100":
+                    tamanoAplicar.style.width = "100px";
+                    tamanoAplicar.style.height = "100px";
+                    break;
+                case "200":
+                    tamanoAplicar.style.width = "200px";
+                    tamanoAplicar.style.height = "200px";
+                    break;
+                case "300":
+                    tamanoAplicar.style.width = "300px";
+                    tamanoAplicar.style.height = "300px";
+                    break;
+                default:
+                    tamanoAplicar.style.width = "200px";
+                    tamanoAplicar.style.height = "200px";
+            } 
+        }
+
+        function cambiaRadio(){
+            let radioCaja = document.getElementById("radioRectangulo").value;
+            let radioAplicar = document.getElementById("caja");
+            switch (radioCaja){
+                case "25":
+                    radioAplicar.style.borderRadius = "25px";
+                    break;
+                case "50":
+                    radioAplicar.style.borderRadius = "50px";
+                    break;
+                case "75":
+                    radioAplicar.style.borderRadius = "75px";
+                    break;
+                default:
+                    radioAplicar.style.borderRadius = "25px";
+            } 
+        }
+    </script>
+
+</body>
+</html>

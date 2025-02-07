@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Me voy de viaje</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin: 15px 0;
+        }
+
+        input[type="date"],
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #555;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #resultados {
+            padding: 10px;
+            margin: 20px auto;
+            line-height: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            width: 80%;
+            border: 1px solid gray;
+
+        }
+
+        .radio-group {
+            text-align: left;
+        }
+
+        /* Formato del div fechas */
+        #fechas {
+            border: 1px solid;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Elige tus vacaciones</h1>
+        <!-- Calendario de salida -->
+        <div class="form-group">
+            <!-- id="fechaSalida" de la variable fecha2 -->
+            Dia de salida: <input type="date" id="fechaSalida"><br>
+        </div>
+
+        <!-- Calendario de llegada -->
+        <div class="form-group">
+            <!-- id="fechaEntrada" de la variable fecha1 -->
+            Dia de llegada: <input type="date" id="fechaEntrada"><br>
+        </div>
+
+        <button onclick="mostrarDatos()">Muestra</button><br>
+
+        <!-- Destino -->
+        <div class="form-group">
+            Elige destino:
+            <div class="radio-group">
+                <input type="radio" name="ciudad" value="Oporto">
+                <label for="Oporto">Oporto</label><br>
+
+                <input type="radio" name="ciudad" value="Lisboa">
+                <label for="Lisboa">Lisboa</label><br>
+
+                <input type="radio" name="ciudad" value="Madrid">
+                <label for="Madrid">Madrid</label><br>
+
+                <input type="radio" name="ciudad" value="Barcelona">
+                <label for="Barcelona">Barcelona</label><br>
+
+                <input type="radio" name="ciudad" value="París">
+                <label for="Paris">París</label><br>
+
+                <input type="radio" name="ciudad" value="Roma">
+                <label for="Roma">Roma</label><br>
+            </div>
+        </div>
+
+        <!-- Div para mostrar el viaje -->
+        <div id="fechas">
+            Selecciona unas fechas de entrada y salida y una ciudad y te diremos el coste
+        </div>
+    </div>
+
+    <script>
+        //Abrir función
+        function mostrarDatos() {
+            //capturar fechas
+            let fechaSalida = document.getElementById("fechaSalida").value
+            let fechaEntrada = document.getElementById("fechaEntrada").value
+
+
+
+            // comprobar si falta alguna fecha
+            if (!fechaSalida || !fechaEntrada) {
+                alert("Introduce las dos fechas")
+                return
+            }
+
+            // convertir un string a Date para que se vea("2024-11-20") 
+            fechaSalida = new Date(fechaSalida)
+            fechaEntrada = new Date(fechaEntrada)
+
+
+            //comprobar fecha  
+            if (fechaSalida > fechaEntrada) {
+                alert("La fecha de llegada no puede ser anterior a la de salida")
+                return
+            }
+
+
+            //Cálculo de la duración del viaje
+            let duracion = (fechaEntrada - fechaSalida) / (1000 * 3600 * 24)
+
+
+            //Selección del destino de las vacaciones
+            //Recorrer los input para cual está selecionado
+            let radios = document.getElementsByName("ciudad");
+            let destino = null
+            for (let radio of radios) {
+                if (radio.checked) {
+                    destino = radio.value
+                    break
+                }
+            }
+
+            //comprobar si ha elegido destino(ciudad)
+            if (!destino) {
+                alert("Por favor, selecciona una cidudad")
+                return
+            }
+
+            //Cálculo del costo del viaje
+            let coste = 0
+            switch (destino) {
+                case "Oporto":
+                    coste = 150
+                    break
+                case "Lisboa":
+                    coste = 120
+                    break
+                case "Madrid":
+                    coste = 100
+                    break
+                case "Barcelona":
+                    coste = 200
+                    break
+                case "París":
+                    coste = 250
+                    break
+                case "Roma":
+                    coste = 180
+                    break
+                default:
+                    alert("Por favor, elege un destino")
+                    return
+            }
+
+            //multiplicar la duración del viaje por el coste diario
+            let costeTotal = duracion * coste
+
+
+            //Convertir fecha Date("2024-11-20") a fecha española ("20/11/2024")
+            fechaSalida = fechaSalida.toLocaleDateString()
+            fechaEntrada = fechaEntrada.toLocaleDateString()
+
+            //motrar resultado en el div "resultados"
+            document.getElementById("fechas").innerHTML = "Tus vacaciones van a ser del día " + fechaSalida + "<br>"
+            document.getElementById("fechas").innerHTML += "hasta el día " + fechaEntrada + "<br>"
+
+            document.getElementById("fechas").innerHTML += "con destino " + destino + ". " + "<br>"
+
+            document.getElementById("fechas").innerHTML += "La duración del viajes es de " + duracion + " días" + "<br>"
+
+            document.getElementById("fechas").innerHTML += "y el coste asciende a " + costeTotal + " €" + "<br>"
+        }
+    </script>
+
+</body>
+
+</html>

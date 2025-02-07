@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=º, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        h2 {
+            color: blue;
+            text-shadow: 2px 2px 5px black;
+        }
+
+        button {
+            width: 100px;
+        }
+
+        div {
+            margin-top: 10px;
+            border: 1px solid black;
+            width: 250px;
+            padding: 10px;
+            display: flex;
+            justify-content: space-evenly;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        let numero1 = 0
+        let numero2 = 0
+        function n3() {
+            numero1 = 3
+            alert ("Has elegido el número: " + numero1)
+        }
+        function n5() {
+            numero1 = 5
+            alert ("Has elegido el número: " + numero1)
+        }
+        function n7() {
+            numero2 = 7
+            alert ("Has elegido el número: " + numero2)
+        }
+        function n9() {
+            numero2= 9
+            alert ("Has elegido el número: " + numero2)
+        }
+
+        function suma() {
+            let resultado = numero1 + numero2
+            alert("El resultado es:" + resultado)
+        }
+
+        function multiplica() {
+            let resultado = numero1 * numero2
+            alert("El resultado es:" + resultado)
+        }
+
+
+
+    </script>
+</head>
+
+<body>
+    <h2>CALCULADORA SIMPLE</h2>
+    <p>Haz clic en los botones para seleccionar dos números y ver los resultados:</p>
+    <h3>NUMERO 1</h3>
+    <button onclick="n1(3)">Numero 3</button>
+    <button onclick="n1(3)">Numero 5</button>
+    <h3>NUMERO 2</h3>
+    <button onclick="n7()">Numero 7</button>
+    <button onclick="n9()">Numero 9</button>
+    <div>
+        <button onclick="suma()">Sumar</button>
+        <button onclick="multiplica()">Multiplicar</button>
+    </div>
+</body>
+
+</html>

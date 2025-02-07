@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<button onclick="diaDeLaSemana()">Ejecuta funcion</button>
+
+<body>
+    <script>
+        function diaDeLaSemana() {
+            let dia = prompt("¿Qué día es hoy?")
+            let diaMinusculas = dia.toLowerCase()
+            let diaMayusculas = dia.toUpperCase()
+
+            //switch
+            switch (diaMinusculas) {
+                case "lunes":
+                    document.write("Hoy es lunes")
+                    break
+                case "martes":
+                    document.write("Hoy es martes")
+                    break
+                case "miercoles":
+                    document.write("Hoy es miercoles")
+                    break
+                case "jueves":
+                    document.write("Hoy es jueves")
+                    break
+                case "viernes":
+                    document.write("Hoy es viernes")
+                    break
+                case "sabado":
+                    document.write("Hoy es sabado")
+                    break
+                case "domingo":
+                    document.write("Hoy es domingo")
+                    break
+                default:
+                    document.write("No te inventes un día mas")
+                    break
+
+
+
+            }
+
+
+
+        }
+    </script>
+
+
+</body>
+
+</html>

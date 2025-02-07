@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switch</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .miConversor {
+            margin-bottom: 10px;
+        }
+
+        .resultado {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Conversor de unidades</h1>
+
+    <div class="miConversor">
+        Introduce un valor numérico:
+        <input type="number" placeholder="Introduce algo ..." id="numero"><br>
+    </div>
+
+    <div class="miConversor">
+        Lo quiero convertir a:
+        <select id="conversor">
+            <option value="F">ºF a ºC</option>
+            <option value="C">ºC a ºF</option>
+            <option value="pies">Metros a Pies</option>
+            <option value="metros">Pies a Metros</option>
+            <option value="libras">Libras a Kg</option>
+            <option value="kg">Kg a Libras</option>
+        </select>
+        <br>
+    </div>
+
+    <button onclick="convierte()">Convertir</button>
+    <button onclick="borrar()">Borrar</button><br>
+    <br>
+
+    <div>
+        <ul id="listado"></ul>
+    </div>
+
+    <script>
+        //captura un valor
+        function convierte() {
+            let valorInicial = document.getElementById("numero").value
+            let valorFinal = null
+            let conversion = document.getElementById("conversor").value
+
+            switch (conversion) {
+                case "F":
+                    valorFinal = (valorInicial - 32) * 5 / 9
+                    escribeResultado(valorInicial, valorFinal, "ºF", "ºC")
+                    break
+                case "C":
+                    valorFinal = valorInicial * (9 / 5) + 32
+                    escribeResultado(valorInicial, valorFinal, "ºC", "ºF")
+                    break
+                case "pies":
+                    valorFinal = valorInicial / 3.28
+                    escribeResultado(valorInicial, valorFinal, "pies", "metros")
+                    break
+                case "metros":
+                    valorFinal = valorInicial * 3.28
+                    escribeResultado(valorInicial, valorFinal, "metros", "pies")
+                    break
+                case "libras":
+                    valorFinal = valorInicial / 2.2
+                    escribeResultado(valorInicial, valorFinal, "libras", "kg")
+                    break
+                case "kg":
+                    valorFinal = valorInicial * 2.2
+                    escribeResultado(valorInicial, valorFinal, "kg", "libras")
+                    break
+                default:
+                    alert("Introduce un número");
+            }
+
+        }
+        function escribeResultado(valorInicial, valorFinal, unidadInicial, unidadFinal) {
+            let nuevoLi = document.createElement("li")
+            nuevoLi.textContent = "El valor de convertir: " + valorInicial + " " + unidadInicial + " es " + valorFinal.toFixed(2) + " " + unidadFinal
+            document.getElementById("listado").appendChild(nuevoLi)
+        }
+
+        function borrar() {
+            document.getElementById("numero").value = "";
+            document.getElementById("listado").innerHTML = "";
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora 2</title>
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        input[type="number"] {
+            margin: 10px;
+            width: 50px;
+        }
+
+        #resultados {
+            margin: 10px;
+        }
+    </style>
+    
+</head>
+
+
+<body>
+    <h1>Calculadora</h1>
+    Numero 1: <input type="number" id="n1"><br>
+    Numero 2: <input type="number" id="n2"><br>
+    <button onclick="realizaOperacion()">Haz cuentas</button>
+    <div id="resultados"></div>
+
+    <script>
+        let numero1
+        let numero2
+        let resultado
+
+        function realizaOperacion(){
+            document.getElementById ("resultados").innerHTML = ""
+            numero1 = parseInt(document.getElementById("n1").value)
+            numero2 = parseInt(document.getElementById("n2").value)
+
+            if (compruebaNumero (numero1, numero2)){                
+                resultado = sumar(numero1, numero2)
+                muestraResultado ("suma", resultado)
+                resultado = restar(numero1, numero2)
+                muestraResultado ("resta", resultado)
+                resultado = multiplicar(numero1, numero2)
+                muestraResultado ("multiplica", resultado)
+                resultado = dividir(numero1, numero2)
+                muestraResultado ("divide", resultado)
+                resultado = potencia(numero1, numero2)
+                muestraResultado ("potencia", resultado)
+            }
+        }
+
+        function compruebaNumero(numero1, numero2){
+            if (isNaN(numero1) || isNaN(numero2)){
+                alert("Debes introducir ambos números")
+                return false
+            }
+            else{
+                return true
+            }
+        }
+
+        function sumar (numero1, numero2){
+            return numero1 + numero2
+        }
+        function restar (numero1, numero2){
+            return numero1 - numero2
+        }
+
+        function multiplicar (numero1, numero2){
+            return numero1 * numero2
+        }
+
+        function dividir (numero1, numero2){
+            return numero1 / numero2
+        }
+
+        function potencia (numero1, numero2){
+            return numero1 ** numero2
+        }
+
+        function muestraResultado (operacion, resultadoAMostrar){
+            document.getElementById("resultados").innerHTML += `El resultado de la ${operacion} es: ${resultadoAMostrar}<br>`
+        }
+
+    </script>
+
+
+       
+</body>
+</html>
+

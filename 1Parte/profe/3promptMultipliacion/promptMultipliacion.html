@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<header>
+    <h1>Practicas con Prompt</h1>
+</header>
+<body>
+    <p>Pulsa en mutlplica, elige 2 números y obtendrás su multplicación</p>
+    <!-- Cada botón que quieras que haga algo deberá tener una función en el onclick" -->
+    <button onclick="multiplicar()">Multiplica</button>
+    
+    <script>
+        function multiplicar(){
+            let numero1;
+            let numero2;
+                // El prompt es un mensaje por pantalla que sirve para meter datos
+            numero1 = prompt ("Introduce numero 1");
+            numero2 = prompt ("Introduce numero 2");
+                // Si el usuario mete un dato no numérico, mostrará el primer mensaje, si no, mostrará el resultado de la operación
+            if (isNaN(numero1) || isNaN(numero2)){
+                //El alert sirve para mostrar un mensaje por pantalla
+                alert("Los datos introducidos son incorrectos");
+            } else {
+                alert ("La multiplicación de los números es: " +numero1 * numero2);
+            }
+            
+        }
+    </script>
+</body>
+
+</html>

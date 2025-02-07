@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    #resultado{
+        border: seagreen solid 3px;
+        height: 2px;
+        visibility: hidden;
+        padding: auto;        
+
+    }
+</style>
+
+</head>
+
+<body>
+
+    <h1>While</h1>
+    <h3>Pulsa en los botones y te daremos los 10 primeros cuadrados</h3><br>
+    <button onclick="cuadrado(event)">2</button>
+    <button onclick="cuadrado(event)">3</button>
+    <button onclick="cuadrado(event)">4</button>
+    <button onclick="cuadrado(event)">5</button>
+    <button onclick="cuadrado(event)">6</button>
+    <button onclick="cuadrado(event)">7</button>
+    <button onclick="cuadrado(event)">8</button>
+    <button onclick="cuadrado(event)">9</button>
+
+    <div id="resultado">
+
+
+
+
+    </div>
+
+    <script>
+        function cuadrado(event) {
+            let t = event.target;   // t = document.getElementById("boton1")
+            let num = parseInt(t.innerText);
+            let exponente = 1;
+            while (exponente <= 10) {
+                document.getElementById("resultado").innerHTML += num**exponente + " - ";
+                exponente++;
+            }
+            document.getElementById("resultado").innerHTML = "<br>";
+        }
+
+    </script>
+
+
+</body>
+
+</html>

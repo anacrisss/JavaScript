@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estructura FOR</title>
+    <style>
+        #tabla {
+            padding: 5px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>FOR</h1>
+    Introduce un número del 1 al 10
+    <input type="number" name="numero" id="numero" min="1" max="10">
+
+    <button onclick="multiplica()">Mostrar tabla</button>  <!-- onclick -->
+
+    <div id="tabla"></div>
+
+    <script>
+        function multiplica(){
+           
+            let numero = Number(document.getElementById("numero").value) //. value
+            let resultado = document.getElementById("tabla")
+            for (let i = 0; i < 10; i++){
+               
+                resultado.innerHTML += "Multiplicar " + numero + " * " + i + " es = " + numero*i + "<br>"            
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

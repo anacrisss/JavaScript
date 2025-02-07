@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotografias</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        img {
+            width: 600px;
+            border: 1px solid black;
+            margin: 10px;
+            transition: opacity 1s ease;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 2px 2px 10px black;
+            opacity: 1;
+        }
+
+        .flecha {
+            border: 2px solid blue;
+            padding: 10px;
+            box-shadow: 2px 2px 5px black;
+            margin: 5px;
+            transition: 1s;
+        }
+
+        .flecha:hover {
+            cursor: pointer;
+            background-color: rgba(0, 0, 255, 0.3);
+        }
+
+        .controles {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/c613dc78b8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1>Album de fotos</h1>
+    <br>
+    <img src="foto1.jpg" alt="fotos" id="foto">
+    <br>
+    <div class="controles">
+        <!-- <i class="fa-solid fa-angles-left flecha" onclick="primero()"></i> -->
+
+        <i class="fa-solid fa-angles-left flecha" id="primero"></i>         
+
+        <i class="fa-solid fa-angle-left flecha" onclick="anterior()"></i>
+        <i class="fa-solid fa-angle-right flecha" onclick="posterior()"></i>
+        <i class="fa-solid fa-angles-right flecha" onclick="ultimo()"></i>
+        <i class="fa-solid fa-pause flecha" onclick="autoPararImagen()"></i>
+        <i class="fa-solid fa-play flecha" onclick="autoCambiarImagen()"></i>
+    </div>
+    <script>
+        document.getElementById("primero").addEventListener(
+            "click",
+            primero
+        )
+
+
+        // Crear array de imágenes
+        let imagenes = []
+        for (let j = 1; j <= 10; j++) {
+            imagenes.push(`foto${j}.jpg`)
+        }
+
+        // Índice inicial de la imagen actual
+        let i = 0
+
+        // Índice final
+        let imagenFinal = imagenes.length - 1
+
+        // Función para la imagen anterior
+        function anterior() {
+            i--
+            if (i < 0) {
+                i = imagenFinal
+            }
+            CambiaImagen(i)
+        }
+
+        // Función para la imagen posterior
+        function posterior() {
+            i++
+            if (i > imagenFinal) {
+                i = 0
+            }
+            CambiaImagen(i)
+        }
+
+        // Función para la imagen inicial
+        i = 0;
+        CambiaImagen(i)
+
+        // Función para la ultima imagen
+        function ultimo() {
+            i = imagenFinal
+            CambiaImagen(i)
+        }
+
+
+        // Función para cambiar de imagen
+        function CambiaImagen(i) {
+            document.getElementById("foto").src = imagenes[i]
+
+        }
+
+
+    </script>
+</body>
+
+</html>

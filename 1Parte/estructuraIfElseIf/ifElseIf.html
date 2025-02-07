@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>estructuraIfElseIf</title>
+
+    <style>
+        #parrafo {
+            margin: 10px;
+            border: 1px solid black;
+            padding: 5px;
+            border-radius: 5px;
+            border-width: 5px;
+            padding: 10px;
+            transition: 5s;
+            border: 1px solid black;
+            overflow: hidden;
+
+        }
+
+        button {
+            margin-left: 5px;
+            width: 100px;
+            border-radius: 5px;
+            border-width: 2px;
+            color: rgb(24, 24, 24);
+            font: bold;
+            
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>If Else If</h1>
+    <button id="verdana" onclick="cambiarLetra(event)">Verdana</button>
+    <button id="arial" onclick="cambiarLetra(event)">Arial</button>
+    <button id="times" onclick="cambiarLetra(event)">Times</button>
+    <br>
+    <br>
+
+    <button id="rojo" onclick="cambiarLetra(event)">Rojo</button>
+    <button id="negro" onclick="cambiarLetra(event)">Negro</button>
+    <button id="azul" onclick="cambiarLetra(event)">Azul</button>
+    <br>
+    <br>
+
+    <button id="negrita" onclick="cambiarLetra(event)">Negrita</button>
+    <button id="normal" onclick="cambiarLetra(event)">Normal</button>
+    <button id="cursiva" onclick="cambiarLetra(event)">Cursiva</button>
+    <br>
+    <br>
+
+    <button id="fondoVerde" onclick="cambiarFondo(event)">Fondo Verde</button>
+    <button id="fondoAzul" onclick="cambiarFondo(event)">Fondo Azul</button>
+    <button id="fondoRojo" onclick="cambiarFondo(event)">Fondo Rojo</button>
+
+
+    <div id="parrafo">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti est iure earum nisi blanditiis
+        quis facilis quo error culpa sit similique sed et, ad explicabo asperiores nostrum voluptatum, nulla in dolore
+        ipsa quia quos, eligendi maxime. Vel voluptas debitis nam rem? Architecto qui quis minima unde temporibus
+        aliquid saepe recusandae!</div>
+
+    <script>
+        function cambiarFondo(e) {
+            let boton = e.target
+            let parrafoACambiar = document.getElementById("parrafo").style
+
+            if (boton.id == "fondoVerde") {
+                parrafoACambiar.backgroundColor = "green"
+                parrafoACambiar.width = "500px"
+                parrafoACambiar.borderRadius = "100px"
+            }
+            else if (boton.id == "fondoAzul") {
+                parrafoACambiar.backgroundColor = "blue"
+                parrafoACambiar.width = "100px"
+                parrafoACambiar.borderRadius = "50px"
+            }
+            else if (boton.id == "fondoRojo") {
+                parrafoACambiar.backgroundColor = "red"
+                parrafoACambiar.width = "500px"
+                parrafoACambiar.borderRadius = "100px"
+            }
+        }
+
+
+        function cambiarLetra(e) {
+            let boton = e.target
+            let parrafoACambiar = document.getElementById("parrafo").style
+
+            if (boton.id == "verdana") {
+                parrafoACambiar.fontFamily = "Verdana"
+            }
+            else if (boton.id == "arial") {
+                parrafoACambiar.fontFamily = "Arial"
+            }
+            else if (boton.id == "times") {
+                parrafoACambiar.fontFamily = "Time New Roman"
+            }
+            else if (boton.id == "rojo") {
+                parrafoACambiar.color = "red"
+            }
+            else if (boton.id == "negro") {
+                parrafoACambiar.color = "black"
+            }
+            else if (boton.id == "azul") {
+                parrafoACambiar.color = "blue"
+            }
+            else if (boton.id == "negrita") {
+                parrafoACambiar.fontWeight = "bold"
+                parrafoACambiar.fontStyle = "normal"
+            }
+            else if (boton.id == "normal") {
+                parrafoACambiar.fontWeight = "100"
+                parrafoACambiar.fontStyle = "normal"
+            }
+            else if (boton.id == "cursiva") {
+                parrafoACambiar.fontStyle = "italic"
+                parrafoACambiar.fontWeight = "100"
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>

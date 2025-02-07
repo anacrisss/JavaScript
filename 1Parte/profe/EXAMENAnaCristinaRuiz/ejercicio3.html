@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+    <link rel="stylesheet" href="css/stylos.css">
+
+    <style>
+        h1, h2, h3  {
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    margin: 0 auto;
+    width: 70%;
+    border: 1px solid rgba(128, 128, 128, 0.149);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 10px 0px;
+    margin-bottom: 30px;
+    align-items: center;
+}  
+
+nav a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    transition: 0.5s;
+}
+
+nav a:hover {
+    color: red;
+}
+
+.main {
+    border: 1px solid black;
+    padding: 20px;
+    background-color: rgba(255, 228, 196, 0.5);
+    width: 800px;
+    margin: 20px auto;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    margin-bottom: 20px;
+}
+
+select {
+    font-size: 1.2em;
+    padding: 10px;
+    margin: 5px;
+}
+
+label {
+    font-size: 1.2rem;
+}
+
+a {
+    padding: 5px;
+    
+}
+
+.select {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: fit-content;
+    border-radius: 5px;
+}
+
+button {
+    font-size: 1.2em;
+    padding: 5px;
+    margin: 5px;
+    background-color: cadetblue;
+    transition: 0.8s;
+}
+
+button:hover {
+    background-color: rgba(95, 158, 160, 0.8);
+    cursor: pointer;
+}
+
+img,
+.select,
+button,
+.inputArea,
+.foroArea {
+    border-color: rgba(128, 128, 128, 0.5);
+    box-shadow: 2px 2px 5px gray;
+    border-radius: 5px;
+}
+
+img {
+    display: block;
+    margin: 10px auto;
+    transition: 1s;
+}
+
+img:hover {
+    scale: 1.2;
+}
+
+hr {
+    margin: 20px;
+    width: 50%;
+}
+
+#cuadrado {
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    margin: 20px;
+    transition: 1s;
+}
+
+.form {
+    width: fit-content;
+    min-width: 400px;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px gray;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.reset {
+    align-items:flex-end
+}
+
+textarea {
+    margin: 10px 0 10px 0;
+    width: 400px;
+    height: 100px;
+    resize: none;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+.chat {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    
+}
+
+.inputArea {
+    padding: 20px;
+    width: fit-content;
+    background: rgba(255, 248, 220, 0.5);
+}
+
+.foroArea {
+    width: 80%;
+    padding: 10px;
+    background: rgba(255, 248, 220, 0.5);
+}
+
+.foroArea H2 {
+    text-align: center;
+    margin-bottom: 3px;
+    text-decoration: underline;
+}
+
+/* Estilo general de la tabla */
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin: 0 auto;
+}
+
+/* Estilo para las celdas */
+th,
+td {
+    border: 1px solid #dddddd;
+    padding: 12px;
+    text-align: left;
+}
+
+/* Estilo para la cabecera */
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Filas alternas */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Estilo para los puntos en la última columna */
+td:last-child {
+    font-weight: bold;
+    text-align: center;
+}
+
+.lineaGruesa {
+    border-top: 3px solid black;
+}
+    </style>
+</head>
+
+<body>
+    <h1>Ejercicio 3 (3 puntos)</h1>
+    <nav>
+        <a href="ejercicio3_exp.html">Ir a explicación</a><br><br>
+        <a href="ejercicio1.html">Ir a Ejercicio 1</a><br><br>
+        <a href="ejercicio2.html">Ir a Ejercicio 2</a><br><br>
+    </nav>
+
+
+    <div class="form" id="colores" onchange="cambiarcolor()">
+        Color:         
+        <input type="radio" name="colores" checked>
+        <label for="colores" value="blanco">Blanco</label>
+        <input type="radio" name="colores">
+        <label for="colores"value="azul">Azul</label>
+        <input type="radio" name="colores">
+        <label for="colores" value="verde">Verde</label>
+        <input type="radio" name="colores">
+        <label for="colores" value="rojo">Rojo</label>
+        <input type="radio" name="colores">
+        <label for="colores" value="amarillo">Amarillo</label>
+        <input type="radio" name="colores">
+        <label for="colores" value="negro">Negro</label><br>
+    
+    </div>
+
+    <div class="form" id = "tamano" onchange="cambiaTamano()">
+        Tamaño: 
+        <input type="radio" name="tamano" checked>
+        <label for="tamano" value="50">50px</label>
+        <input type="radio" name="tamano">
+        <label for="tamano" value="100">100px</label>
+        <input type="radio" name="tamano">
+        <label for="tamano" value="0">200px</label>
+        <input type="radio" name="tamano">
+        <label for="tamano">300px</label>
+        <input type="radio" name="tamano">
+        <label for="tamano">400px</label>
+        <input type="radio" name="tamano">
+        <label for="tamano">500px</label><br>
+    </div>
+
+    <div class="form">
+        Radios:
+        <input type="radio" name="radio" checked>
+        <label for="tamano">0px</label> 
+        <input type="radio" name="radio">
+        <label for="tamano">20px</label>
+        <input type="radio" name="radio">
+        <label for="tamano">30px</label>
+        <input type="radio" name="radio">
+        <label for="tamano">40px</label>
+        <input type="radio" name="radio">
+        <label for="tamano">50px</label>
+    </div>
+
+
+    <button onclick="cambiarcolor()">Cambia solo color</button>
+    <button>Cambia solo tamaño</button>
+    <button>Cambia solo radio</button>
+    <button>Cambia todo</button>
+    <button>Reset</button>
+
+    <div id="cuadrado"></div>
+
+    <script>
+
+    // function cambiarcolor() {
+    //         // Obtenemos todas las opciones de radio
+    //         let colorCaja = document.getElementsByName("colores")
+    //         let seleccion = "cuadrado"
+
+        //     // Recorremos los input type radio para ver cuál está seleccionada
+        //     for (let i = 0; i < colorCaja.length; i++) {
+        //         if (colorCaja[i].checked) { //si está chequeado
+        //             seleccion = colorCaja[i].value //capturo su valor
+        //             break // Una vez encontrada el chequeado, salimos del bucle
+        //         }
+        //     }
+        // }
+
+        //función para cambiar el color
+        function cambiarcolor(){
+             let colorCaja = document.getElementById("colores").value;
+            let colorAplicar = document.getElementById("cuadrado");
+
+            switch (colorCaja){
+               case "blanco":
+                     colorAplicar.style.backgroundColor = "white";
+                    break;
+                 case "azul":
+                    colorAplicar.style.backgroundColor = "blue";
+                     break;
+                 case "verde":
+                     colorAplicar.style.backgroundColor = "green";
+                     break;
+                 case "rojo":
+                     colorAplicar.style.backgroundColor = "red";
+                     break;
+                case "amarillo":
+                     colorAplicar.style.backgroundColor = "yellow";
+                     break;                 
+                 default:
+                     colorAplicar.style.backgroundColor = "black";
+             } 
+            }
+         
+       
+        
+    
+        
+        
+
+        //función para cambiar el tamaño
+        function cambiaTamano(){
+            let tamanoCaja = document.getElementById("tamaños").value;
+            let tamanoAplicar = document.getElementById("cuadrado");
+            switch (tamanoCaja){
+                case "100":
+                    tamanoAplicar.style.width = "100px";
+                    tamanoAplicar.style.height = "100px";
+                    break;
+                case "200":
+                    tamanoAplicar.style.width = "200px";
+                    tamanoAplicar.style.height = "200px";
+                    break;
+                case "300":
+                    tamanoAplicar.style.width = "300px";
+                    tamanoAplicar.style.height = "300px";
+                    break;
+                default:
+                    tamanoAplicar.style.width = "200px";
+                    tamanoAplicar.style.height = "200px";
+            } 
+        }
+
+
+        //Función para cambiar el radio
+        
+
+        //Función para cambiar todo
+
+
+        //Función para devolver al estado inicial
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

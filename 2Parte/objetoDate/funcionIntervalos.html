@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>  
+
+        let paraSaludo = setInterval(dimeHola, 1000);
+        
+        function dimeHola() {
+            document.getElementById("divSaludo").innerHTML += "hola ";
+        }
+
+        function pararSaludo() {
+            clearInterval(paraSaludo); 
+        }
+
+        setTimeout(mostarSaludo,3000)
+        function mostarSaludo(){
+            alert ("hola")
+        }
+
+        
+
+    </script>
+
+   <button onclick="pararSaludo()">Para el saludo</button>
+
+   <div id="divSaludo"></div>
+
+   <button onclick="mostarSaludo()">Saludame</button>
+
+
+    
+</body>
+</html>

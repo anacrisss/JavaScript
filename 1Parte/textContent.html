@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Practica de textContent.</title>
+    <script>
+        let nombreUsuario
+        let ciudadUsuario
+        function mostrar() {
+            nombreUsuario = document.getElementById("nombre").value
+            ciudadUsuario = document.getElementById("lugar").value
+            let nuevoParrafo = document.createElement("p")
+            nuevoParrafo.textContent = `Te llamas ${nombreUsuario} y naciste en ${ciudadUsuario}`
+            document.getElementById ("resultado").appendChild(nuevoParrafo)
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>Practica de textContent.tHtml</h1>
+    Introduce tu nombre:
+    <input type="text" id="nombre" placeholder="Dime tu nombre...">
+    Dime donde naciste:
+    <input type="text" id="lugar" placeholder="Dime lugar...">
+    <button onclick="mostrar()">Dimelo!!</button>
+    <div>
+        <h3>Nombre y cuidad de nacimiento</h3>
+        <div id="resultado">
+        </div>
+    </div>
+
+</body>
+
+</html>

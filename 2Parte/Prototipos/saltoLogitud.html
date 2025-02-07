@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saltadores</title>
+    <style>
+        body {
+            font-family: verdana;
+        }
+
+        div {
+            border: 1px solid gray;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            width: 60%;
+        }
+
+        button {
+            margin: 10px 5px;
+            background-color: cadetblue;
+            border: 1px solid gray;
+            padding: 10px;
+            border-radius: 10px;
+            transition: 0.5s;
+        }
+
+        button:hover {
+            cursor: pointer;
+            background-color: rgba(95, 158, 160, 0.6);
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Saltos de Longitud</h1>
+    Nombre: <input type="text" id="txtNombre">
+    Salto 1: <input type="number" id="txtSalto1">
+    Salto 2: <input type="number" id="txtSalto2"><br>
+    <button id="btnAgregar">Agregar</button>
+    <button id="btnOrdenar">Ordenar</button>
+    <button id="btnFiltrar">Filtrar mayores 8 metros</button>
+    <button id="btnCorregir">Corregir Salto</button>
+
+    </p>
+    <div id="divListado">
+        LISTADO DE SALTADORES:
+    </div>
+    <div id="divMayores">
+        MAYORES DE 8 METROS:
+    </div>
+    <script>
+        // Clase para representar a un saltador
+        class Saltador {
+            constructor(nombre, salto1, salto2) {
+                this.nombre = nombre
+                this.salto1 = salto1
+                this.salto2 = salto2
+                this.promedio = this.calcularPromedio()
+            }
+        }
+
+        //prototipo para calcular promedio
+        Saltador.prototype.calcularPromedio = function () {
+            return (this.salto1 + this.salto2) / 2
+        }
+
+
+        //prototipop para mostrar saltadot y saltos
+        Saltador.prototype.mostrar = function () {
+            return `${this.nombre} ha saltado ${(this.salto1).toFixed(1)}m. y ${(this.salto2.toFixed(1))}m. Promedio ${(this.promedio.toFixed(2))}`
+        }
+
+
+        // Array para almacenar los saltadores
+        let saltadores = []
+
+        // Función para agregar un nuevo saltador
+        function agregarSaltador() {
+            let nombre = document.querySelector("#txtNombre").value
+            let salto1 = Number(document.querySelector("#txtSalto1").value)
+            let salto2 = Number(document.querySelector("#txtSalto2").value)
+
+            if (nombre && salto1 && salto2) {
+                let nuevoSaltador = new Saltador(nombre, salto1, salto2)
+                saltadores.push(nuevoSaltador)
+                mostrarSaltador()
+                limpiarSaltador()
+            }
+            else {
+                alert("Faltan datos")
+            }
+        }
+
+        // Función para mostrar la lista de saltadores
+        function mostrarSaltador() {
+            let listado = document.querySelector("#divListado")
+            listado.innerHTML = "LISTADO DE SALTADORES: <br>"
+
+            saltadores.forEach((saltador, index) => {
+                listado.innerHTML += `${index + 1} : ${saltador.mostrar()}<br>`
+
+            })
+
+        }
+
+        // Función para ordenar los saltadores por promedio de mayor a menor
+        function ordenarSaltadores() {
+            saltadores.sort((a, b) => b.promedio - a.promedio)  // ordena el array de mayor a menor
+            mostrarSaltador()
+        }
+
+        // Funcion para mostrar mayores de 8m
+        function filtrarMayores() {
+            let mayores = saltadores.filter(s => s.promedio > 8)
+            document.querySelector("#divMayores").innerHTML = "Mayores a 8m.: "
+            mayores.forEach((s, index) => {
+                document.querySelector("#divMayores").innerHTML += `${index + 1} : ${s.mostrar()} m<br> `
+            })
+        }
+
+
+
+        // Función para limpiar el formulario
+        function limpiarSaltador() {
+            document.querySelector("#txtNombre").value = ""
+            document.querySelector("#txtSalto1").value = ""
+            document.querySelector("#txtSalto2").value = ""
+            document.querySelector("#txtNombre").focus()
+        }
+
+
+        // Eventos para los botones
+        document.querySelector("#btnAgregar").addEventListener("click", agregarSaltador) //querySelector selecionar lo que yo quiera ("etiqueta" o "".clase" o "#myId") clase 
+        document.querySelector("#btnOrdenar").addEventListener("click", ordenarSaltadores) // querySelector coge todos las etiquetas, clases e Id y hace un bucle
+        document.querySelector("#btnFiltrar").addEventListener("click", filtrarMayores)
+        document.querySelector("#btnCorregir").addEventListener("click", corregirSalto)
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTEGRAR JS E</title>
+    <script>
+        function{
+        alert ("Hola desde el head")
+        }
+    </script>
+
+    <script src="001.js"></script>
+</head>
+
+<body>
+    <h1> COMO INTERGRAR JS EN HTML</h1>
+    <h4> Embebido en una etiqueta</h4>
+    <button onclick="alert('Hola mundo')">Te saludo desde la etiqueta</button>
+    <h4>En el body</h4>
+    <button onclick="alert('Hola mundo')">Te saludo desde la etiqueta</button>
+    
+    <script>
+        function saluda(){
+            alert("Hola mundo")
+        }
+    </script>
+    <h4>En la cabecera</h4>
+    <button onclick="alert ('saludaDesdeHead')">Te saludo desde el Head</button> 
+
+    <h4>Desde fichero externo</h4>
+    <button ondblclick="saludaDesdeFichero()">Te saludo desde fichero externo</button>
+
+</body>
+    
+</html>
