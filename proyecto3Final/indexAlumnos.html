@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Formulario</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgba(95, 158, 160, 0.2);
+            color: #01579b;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0288d1;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #81d4fa;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #0288d1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0277bd;
+        }
+
+        #mensajesError {
+            color: #d32f2f;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .success {
+            color: #388e3c;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="miFormulario">
+        <h1>Formulario con Validación</h1>
+        <label>Nombre completo: <input type="text" id="nombre" name="nombre" required /></label>
+        <!-- <label>Usuario: <input type="text" id="usuario" name="usuario" required /></label>
+        <label>Email: <input type="text" id="email" name="email" required /></label>
+        <label>DNI: <input type="text" id="dni" name="dni" /></label>
+        <label>Teléfono móvil: <input type="text" id="telefono" name="telefono" required /></label>
+        <label>Fecha de nacimiento: <input type="date" id="fechaNacimiento" name="fechaNacimiento" required /></label>
+        <label>Código postal: <input type="text" id="codigoPostal" name="codigoPostal" required /></label>
+        <label>Contraseña: <input type="password" id="password" name="password" required /></label> -->
+        <button type="submit">Enviar</button>
+        <button id="resetButton" type="button">Borrar</button>
+        <div id="mensajesError"></div>
+    </form>
+
+
+    <script>
+        function chequea(event) {
+            // el navegados ignora el evento que ha hecho el usuario
+            event.preventDefault()
+
+            // Array de errores
+            let erroresArray = []
+
+
+            //Capturar datos del usuaria desde el formulario  // . trim borra al principia y al final los espacios
+            const nombreUsuario = document.getElementById("nombre").value.trim()
+
+
+            //Creación de expresiones regulares // \ espacios en blanco
+            const nombreUsuarioExpReg = /^[A-Za-záéíóúÁÉÍÓÚ\s]{5,}$/
+
+            //Comprobación de las expresiones regular u otras condiciones de la validación 
+            if (!nombreUsuarioExpReg.test(nombreUsuario)) {
+                erroresArray.push("El nombre no es correcto")
+            }
+
+            //Mostrar error si existen
+            const erroresDiv = document.getElementById("mensajesError")
+
+            if (erroresArray.length != 0) {
+                //Aquí escribo los errores en el div
+                erroresDiv.innerHTML = erroresArray.join("<br>")
+            }
+            //Aquí almaceono los datos en localStorage
+            else {
+                localStorage.setItem("nombre", nombreUsuario)
+                // y el resto igual
+                // SWEET ALERT Y EL REENVIO A LA OTRA PÁGINA CUANDO ACABA EL SWEET ALERT
+            }
+
+        }
+
+
+
+
+
+        document.querySelector("#miFormulario").addEventListener(
+            "submit",
+            chequea
+        )
+
+
+    </script>
+</body>
+
+</html>
