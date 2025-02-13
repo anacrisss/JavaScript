@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Ejemplo con THEN</h1>
+    <div id="resultados"></div>
+    <button id="leerDatos">Leer datos</button>
+
+    <script>
+      async function leerDatos() {
+            try {
+                document.getElementById("resultados").innerHTML = "Leyendo Datos ...<br>";
+                /// si se quieta la s final de posts, entra en el error del if
+                let response = await fetch("https://jsonplaceholder.typicode.com/posts/")
+                if(!response.ok){
+                    throw new Error("No me he podido conectar a la API")
+                }
+
+                let datos = await response.json()
+                let datosFiltrados = datos.filter(post => post.id <= 10)
+                datosFiltrados.forEach(post => {
+                    document.getElementById("resultados").innerHTML += post.id + " " + post.title + "<br>"
+                });
+
+            } catch (error) {
+                alert(error);
+            }
+        }
+
+
+        document.getElementById("leerDatos").addEventListener(
+            "click",
+            leerDatos
+        )
+
+    </script>
+    
+</body>
+</html>
